@@ -6,6 +6,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider, connect } from 'react-redux';
 import reducer from './src/reducers/exampleReducer';
 import RepoList from './src/RepoList';
+import Navigation from './src/config/navigation'
 
 const loggerMiddleware = createLogger();
 
@@ -16,7 +17,7 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <RepoList />
+          <Navigation />
         </View>
       </Provider>
     );
