@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import WanderListContainer from '../components/wanderListContainer'
 
 export default class WanderlistScreen extends React.Component {
     render() {
         return (
         <View style={styles.container}>
-            <Text>Wanderlist!</Text>
+            <WanderListContainer></WanderListContainer>  
         </View>
         );
     }
@@ -17,6 +18,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center', 
         alignItems: 'center',
         backgroundColor: '#fff',
-        marginTop: 50
     }
 });
