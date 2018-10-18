@@ -1,7 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import LogoTitle from '../components/logoTitle'
 
 export default class WanderlistScreen extends React.Component {
+    static navigationOptions = {
+        // headerTitle instead of title
+        headerTitle: <LogoTitle />
+    };
+
+
     render() {
         return (
         <View style={styles.container}>
@@ -17,6 +24,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center', 
         alignItems: 'center',
         backgroundColor: '#fff',
-        marginTop: 50
     }
 });

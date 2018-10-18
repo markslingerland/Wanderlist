@@ -6,7 +6,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider, connect } from 'react-redux';
 import reducer from './src/reducers/exampleReducer';
 import RepoList from './src/RepoList';
-import Navigation from './src/config/navigation'
+import { RootStack } from './src/config/navigation'
 
 const loggerMiddleware = createLogger();
 
@@ -16,18 +16,9 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          <Navigation />
-        </View>
+          <RootStack />
       </Provider>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    marginTop: 50
-  }
-});
