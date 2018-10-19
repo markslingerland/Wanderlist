@@ -1,19 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Image, } from 'react-native';
 
 
 export default class WanderPointContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
-            text: 'Bilnaat'
+            text: 'Hello World'
         }
     }
 
     render() {
         return (
         <View style = {styles.inner}>
-           <Text> {this.state.text}</Text>
+            <ScrollView>
+                <Text> {this.state.text}</Text>
+           </ScrollView>
         </View>
         );
     }
@@ -28,5 +30,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignItems: 'center',
         backgroundColor: 'rgb(255, 255, 255)'
+    },
+    text: {
+        textAlign:'center'
     }
 });
