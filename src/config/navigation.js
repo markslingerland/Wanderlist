@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from 'react-navigation';
 import ExploreScreen from '../screens/exploreScreen';
 import MapScreen from '../screens/mapScreen';
 import WanderlistScreen from '../screens/wanderlistScreen';
+import WanderpointScreen from '../screens/wanderpointScreen';
 import ItineraryScreen from '../screens/itineraryScreen';
 import ProfileScreen from '../screens/profileScreen';
 
@@ -26,7 +27,7 @@ export default createBottomTabNavigator({
     Explore: ExploreScreen,
     Map: MapScreen,
     Wanderlist: WanderlistScreen,
-    Itinerary: ItineraryScreen,
+    Itinerary: WanderpointScreen,
     Profile: ProfileScreen,
   }, {
     navigationOptions: ({ navigation }) => ({
