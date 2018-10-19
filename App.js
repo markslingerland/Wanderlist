@@ -2,32 +2,25 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { Provider, connect } from 'react-redux';
 import reducer from './src/reducers/exampleReducer';
-import RepoList from './src/RepoList';
-import Navigation from './src/config/navigation'
+import points from './src/reducers/pointReducer';
+import { RootStack } from './src/config/navigation'
 
 const loggerMiddleware = createLogger();
+const rootReducer = combineReducers({repos: reducer, points})
 
-const store = createStore(reducer, applyMiddleware(thunkMiddleware, loggerMiddleware));
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, loggerMiddleware));
+
 
 export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          <Navigation />
-        </View>
+          <RootStack />
       </Provider>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    marginTop: 50
-  }
-});

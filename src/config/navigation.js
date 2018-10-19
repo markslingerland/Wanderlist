@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, Image  } from 'react-native'
-import { createBottomTabNavigator } from 'react-navigation';
+import { createBottomTabNavigator, createStackNavigator  } from 'react-navigation';
 import ExploreScreen from '../screens/exploreScreen';
 import MapScreen from '../screens/mapScreen';
 import WanderlistScreen from '../screens/wanderlistScreen';
@@ -23,12 +23,32 @@ const icons = {
 	Profile: require('../../assets/images/TabBar/Profile.png'),
 }
 
-export default createBottomTabNavigator({
-    Explore: ExploreScreen,
-    Map: MapScreen,
-    Wanderlist: WanderlistScreen,
-    Itinerary: WanderpointScreen,
-    Profile: ProfileScreen,
+const ExploreStack = createStackNavigator({
+	Main: ExploreScreen
+})
+
+const MapStack = createStackNavigator({
+	Main: MapScreen
+})
+
+const WanderlistStack = createStackNavigator({
+	Main: WanderlistScreen
+})
+
+const ItineraryStack = createStackNavigator({
+	Main: WanderpointScreen
+})
+
+const ProfileStack = createStackNavigator({
+	Main: ProfileScreen
+})
+
+export const RootStack = createBottomTabNavigator({
+    Explore: ExploreStack,
+    Map: MapStack,
+	Wanderlist: WanderlistStack,
+    Itinerary: ItineraryStack,
+    Profile: ProfileStack,
   }, {
     navigationOptions: ({ navigation }) => ({
       	tabBarIcon: ({ focused, horizontal, tintColor }) => {
