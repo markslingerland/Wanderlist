@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import WanderListContainer from '../components/wanderListContainer'
 import LogoTitle from '../components/logoTitle'
 
 export default class WanderlistScreen extends React.Component {
@@ -11,7 +12,7 @@ export default class WanderlistScreen extends React.Component {
     render() {
         return (
         <View style={styles.container}>
-            <Text>Wanderlist!</Text>
+            <WanderListContainer/>
         </View>
         );
     }
