@@ -7,8 +7,7 @@ export default class WanderlistScreen extends React.Component {
         // headerTitle instead of title
         headerTitle: <LogoTitle />
     };
-
-
+    
     render() {
         return (
         <View style={styles.container}>
