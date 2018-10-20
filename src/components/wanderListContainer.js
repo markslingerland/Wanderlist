@@ -1,44 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { StyleSheet, Text, View, ListView, Image, Alert, TouchableWithoutFeedback, Modal} from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import { listPoints } from '../reducers/pointReducer'
+import FavoriteComponent from '../components/Core/favoriteComponent'
 
-
-export default class WanderlistContainer extends React.Component {
-    constructor() {
-        super();
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        this.state = {
-        dataSource: 
-        ds.cloneWithRows([
-                        {country:'Japan', title:'Kiyomizu-dera', image:'https://upload.wikimedia.org/wikipedia/commons/3/3c/Kiyomizu.jpg', area:'Kyoto', isFavorite: true, location:{long:'longitude',lat:'latitude'}, tags:['tag1','tag2','tag3'], UNESCO:true },
-                        {country:'Germany', title:'Berlin Wall', image:'http://www.wendemuseum.org/sites/default/files/Noir.jpg', area:'Berlin', isFavorite: false, location:'geolocation here', tags:['tag1','tag2','tag3'], UNESCO:true},
-                        {country:'France', title:'Marseillan Plage', image:'https://q-xx.bstatic.com/images/hotel/max1024x768/141/141737177.jpg', area:'Occitanie', isFavorite: true, location:'geolocation here', tags:['tag1','tag2','tag3'], UNESCO:true },
-                        {country:'Egypt', title:'Berlin Wall', image:'http://www.wendemuseum.org/sites/default/files/Noir.jpg', area:'Berlin', isFavorite: true, location:'geolocation here', tags:['tag1','tag2','tag3'], UNESCO:true},
-                        {country:'China', title:'Berlin Wall', image:'http://www.wendemuseum.org/sites/default/files/Noir.jpg', area:'Berlin', isFavorite: true, location:'geolocation here', tags:['tag1','tag2','tag3'], UNESCO:true},
-                        {country:'Australia', },
-                        {country:'Norway', },
-                        {country:'UK', },
-                        {country:'America', },
-                        {country:'Canada', },
-                        {country:'Hawaii', },
-                        ]), 
-        // 
-        //ds.cloneWithRows(['Awesome', 'row 2', 'row 3', 'row 4', 'row 5', 'row 6']),
-        };
-        //console.log(this.state.dataSource._dataBlob);
+class WanderlistContainer extends React.Component {
+    componentDidMount() {
+        this.props.listPoints();
     }
+
     onPress(e){
         console.log("Pressed: " + e.area)
 
     }
 
-    
-
     render() {
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+
         return (
         <ListView
             style={styles.list}
-            dataSource={this.state.dataSource}
+            enableEmptySections={true}
+            dataSource={ds.cloneWithRows(this.props.points)}
             renderRow={(rowData) => 
                 <TouchableWithoutFeedback
                 onPress={this.onPress.bind(this,rowData)}>
@@ -51,17 +34,9 @@ export default class WanderlistContainer extends React.Component {
                     <View style={styles.header}>
                         <Text style={styles.title}>{rowData.title}</Text>
                         <Text style={styles.subtitle}>{rowData.area},{rowData.country}</Text>
-                        <FontAwesome 
-                            name='star' 
-                            size={32} 
-                            color="#EE6C4D" 
-                            style={{
-                                position: 'absolute',
-                                top: '35%',
-                                left: '90%'
-                            }}
-
-                            />
+                        {(rowData.isFavorite) ? <FavoriteComponent state={true} itemId={rowData.id} /> : <FavoriteComponent state={false} itemId={rowData.id}/> }
+                        
+                        
 
                     </View>
                 </View>
@@ -71,6 +46,20 @@ export default class WanderlistContainer extends React.Component {
         );
     }
 }
+
+const mapStateToProps = state => {
+    const { points } = state.points;
+    let storedPoints = points.map(point => ({ key: point.id, ...point }));
+    return {
+      points: storedPoints
+    };
+  };
+  
+  const mapDispatchToProps = {
+    listPoints
+  };
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(WanderlistContainer)
 
 const styles = StyleSheet.create({
     list: {

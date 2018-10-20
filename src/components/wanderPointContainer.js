@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView, Image, } from 'react-native';
-
+import { listPoints } from '../reducers/pointReducer'
 
 export default class WanderPointContainer extends React.Component {
     constructor(props) {
@@ -9,6 +9,7 @@ export default class WanderPointContainer extends React.Component {
             text: 'This UNESCO World Heritage Site is perched on the east of the Kyoto and a beautiful Buddhist temple to explore. Make sure to enjoy the view from the overlooking veranda and visit the stunning pagoda, too. It really is a very special place.This UNESCO World Heritage Site is perched on the east of the Kyoto and a beautiful Buddhist temple to explore. Make sure to enjoy the view from the overlooking veranda and visit the stunning pagoda, too. It really is a very special place.'
         }
     }
+
 
     render() {
         return (
