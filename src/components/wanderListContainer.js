@@ -57,6 +57,7 @@ class WanderlistContainer extends React.Component {
 }
 
 const mapStateToProps = state => {
+    console.log(state.points.points)
     const { points } = state.points;
     let storedPoints = points.map(point => ({ key: point.id, ...point }));
     return {
