@@ -7,7 +7,7 @@ import { toggleFavoritePoint } from '../../reducers/pointReducer'
 class FavoriteComponent extends React.Component {
     render() {
       return (
-        <TouchableWithoutFeedback onPress={() => this.props.toggleFavoritePoint(this.props.itemId)}>
+        <TouchableWithoutFeedback hitSlop = {{top:0, bottom: 50, left:50, right:0}} onPress={() => this.props.toggleFavoritePoint(this.props.itemId)}>
             <View style={styles.container}>
                 {(this.props.state) ? 
                     <FontAwesome 
@@ -38,6 +38,7 @@ export default connect(null, mapDispatchToProps)(FavoriteComponent)
 
   const styles = StyleSheet.create({
     container: {
+        width: '200%',
         position: 'absolute',
         top: '35%',
         left: '90%'
