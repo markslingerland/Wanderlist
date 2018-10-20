@@ -5,10 +5,6 @@ import { connect } from 'react-redux';
 import { toggleFavoritePoint } from '../../reducers/pointReducer'
 
 class FavoriteComponent extends React.Component {
-    onPress = (itemId) => {
-        toggleFavoritePoint(itemId)
-    }
-
     render() {
       return (
         <TouchableWithoutFeedback onPress={() => this.props.toggleFavoritePoint(this.props.itemId)}>

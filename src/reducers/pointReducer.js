@@ -13,13 +13,12 @@ export default function points(state = { points: [] }, action) {
     case GET_POINTS_FAIL:
       return { ...state, loading: false, error: action.err };
     case TOGGLE_FAVORITE_POINT:
-      var state = state.points.map(point =>
+    console.log()
+      return {...state, points: state.points.map(point =>
         (point.id == action.id)
-          ? console.log('true')
-          : console.log('false')
-      )
-      return state
-    
+          ? {...point, isFavorite: !point.isFavorite}
+          : point
+      ) } 
     default:
       return state;
   }
