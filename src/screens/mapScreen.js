@@ -15,6 +15,17 @@ class MapScreen extends React.Component {
     componentDidMount() {
         this.props.listPoints();
       }
+    
+      renderMarker(point){ 
+        var latitude = point.latitude;
+        console.log(typeof(latitude))
+        console.log(latitude)
+        return <MapView.Marker
+            key={point.key}
+            coordinate={{latitude: point.latitude , longitude: point.longitude}}
+            title={point.title}
+            description={point.description}
+        />}  
 
     render() {
         return (
@@ -26,21 +37,18 @@ class MapScreen extends React.Component {
               latitudeDelta: 22,
               longitudeDelta: 15,
             }}>
-            {/* {this.state.points.map(marker => (
-                <Marker
-                coordinate={marker.latlng}
-                title={marker.title}
-                description={marker.description}
-                />
-            ))} */}
+            {this.props.points.map(marker => (
+               this.renderMarker(marker)
+            ))}
         </MapView>
         );
     }
 }
 
+
 const mapStateToProps = state => {
-    // let storedPoints = state.points.map(repo => ({ key: repo.id.toString(), ...repo }));
-    let storedPoints = state.points.points
+    const { points } = state.points;
+    let storedPoints = points.map(point => ({ key: point.id, ...point }));
     return {
       points: storedPoints
     };
