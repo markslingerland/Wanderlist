@@ -16,16 +16,13 @@ class MapScreen extends React.Component {
         this.props.listPoints();
       }
     
-      renderMarker(point){ 
-        var latitude = point.latitude;
-        console.log(typeof(latitude))
-        console.log(latitude)
-        return <MapView.Marker
-            key={point.key}
-            coordinate={{latitude: point.latitude , longitude: point.longitude}}
-            title={point.title}
-            description={point.description}
-        />}  
+    renderMarker(point){ 
+    return <MapView.Marker
+        key={point.key}
+        coordinate={{latitude: point.latitude , longitude: point.longitude}}
+        title={point.title}
+        description={point.description}
+    />}  
 
     render() {
         return (
