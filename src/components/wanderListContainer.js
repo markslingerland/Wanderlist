@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Text, View, ListView, Image, Alert, TouchableWithoutFeedback, Modal} from 'react-native';
-import { listPoints } from '../reducers/pointReducer'
+import { listPoints, selectPoint } from '../reducers/pointReducer'
 import FavoriteComponent from '../components/Core/favoriteComponent'
 
 class WanderlistContainer extends React.Component {
@@ -9,9 +9,10 @@ class WanderlistContainer extends React.Component {
         this.props.listPoints();
     }
 
-    onPress(e){
-        console.log("Pressed: " + e.area)
-
+    onPress(point){
+        console.log(this.props)
+        this.props.selectPoint(point);
+        this.props.navigation.navigate('Wanderpoint');
     }
 
     render() {
@@ -24,7 +25,7 @@ class WanderlistContainer extends React.Component {
             dataSource={ds.cloneWithRows(this.props.points)}
             renderRow={(rowData) => 
                 <TouchableWithoutFeedback
-                onPress={this.onPress.bind(this,rowData)}>
+                onPress={() => this.onPress(rowData)}>
                 <View 
                 style={styles.item} >
                     <Image
@@ -48,7 +49,6 @@ class WanderlistContainer extends React.Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state.points.points)
     const { points } = state.points;
     let storedPoints = points.map(point => ({ key: point.id, ...point }));
     return {
@@ -57,7 +57,8 @@ const mapStateToProps = state => {
   };
   
   const mapDispatchToProps = {
-    listPoints
+    listPoints,
+    selectPoint
   };
   
   export default connect(mapStateToProps, mapDispatchToProps)(WanderlistContainer)
