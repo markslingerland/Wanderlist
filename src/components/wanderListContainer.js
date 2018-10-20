@@ -29,13 +29,7 @@ export default class WanderlistContainer extends React.Component {
     }
     onPress(e){
         console.log("Pressed: " + e.area)
-        return(
-            <View style={{height: '100%', width:'95%', backgroundColor: 'red',}}>
 
-            <Text> TEST TEST TEST</Text>
-                
-            </View>
-        )
     }
 
     
