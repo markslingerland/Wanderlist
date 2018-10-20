@@ -4,6 +4,7 @@ import { createBottomTabNavigator, createStackNavigator  } from 'react-navigatio
 import ExploreScreen from '../screens/exploreScreen';
 import MapScreen from '../screens/mapScreen';
 import WanderlistScreen from '../screens/wanderlistScreen';
+import WanderpointScreen from '../screens/wanderpointScreen';
 import ItineraryScreen from '../screens/itineraryScreen';
 import ProfileScreen from '../screens/profileScreen';
 
@@ -35,7 +36,7 @@ const WanderlistStack = createStackNavigator({
 })
 
 const ItineraryStack = createStackNavigator({
-	Main: ItineraryScreen
+	Main: WanderpointScreen
 })
 
 const ProfileStack = createStackNavigator({
