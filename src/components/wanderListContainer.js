@@ -1,11 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Text, View, ListView, Image, Alert, TouchableWithoutFeedback, Modal} from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
 import { listPoints } from '../reducers/pointReducer'
 import FavoriteComponent from '../components/Core/favoriteComponent'
-
-
 
 class WanderlistContainer extends React.Component {
     componentDidMount() {
@@ -14,14 +11,8 @@ class WanderlistContainer extends React.Component {
 
     onPress(e){
         console.log("Pressed: " + e.area)
-        return(
-            <View style={{height: '100%', width:'95%', backgroundColor: 'red',}}>
 
-            <Text> TEST TEST TEST</Text>
-                
-            </View>
-        )
-    }    
+    }
 
     render() {
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
