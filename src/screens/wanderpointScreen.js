@@ -1,23 +1,40 @@
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { connect } from 'react-redux';
 import WanderPointContainer from '../components/wanderPointContainer'
 
 
-export default class WanderpointScreen extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state ={
-            text: 'Bilnaat'
-        }
+class WanderpointScreen extends React.Component {
+    componentWillMount() {
+        this.props.navigation.setParams({ title: this.props.selectedPoint.title }) 
     }
+
+    static navigationOptions = ({ navigation }) => {
+        const { state: { params = {} } } = navigation;
+        return {
+          title: params.title || "",
+        };
+      }
+
     render() {
         return (
-        <ImageBackground source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Kiyomizu.jpg/1200px-Kiyomizu.jpg'}} resizeMode='cover' style={styles.container}>
-                <WanderPointContainer/>
+        <ImageBackground source={{uri: this.props.selectedPoint.image}} resizeMode='cover' style={styles.container}>
+                <WanderPointContainer selectedPoint={this.props.selectedPoint}/>
         </ImageBackground>
         );
     }
 }
+
+const mapStateToProps = state => {
+    const { selectedPoint } = state.points;
+    
+    console.log(selectedPoint)
+    return {
+      selectedPoint: selectedPoint
+    };
+  };
+  
+export default connect(mapStateToProps)(WanderpointScreen)
 
 const styles = StyleSheet.create({
     container: {

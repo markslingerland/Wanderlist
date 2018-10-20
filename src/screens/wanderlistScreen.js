@@ -12,7 +12,7 @@ export default class WanderlistScreen extends React.Component {
     render() {
         return (
         <View style={styles.container}>
-            <WanderListContainer/>
+            <WanderListContainer navigation={this.props.navigation}/>
         </View>
         );
     }
