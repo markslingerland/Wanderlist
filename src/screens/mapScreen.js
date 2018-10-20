@@ -21,7 +21,7 @@ class MapScreen extends React.Component {
         key={point.key}
         coordinate={{latitude: point.latitude , longitude: point.longitude}}
         title={point.title}
-        description={point.description}
+        description={`${point.country}, ${point.area}`}
     />}  
 
     render() {
