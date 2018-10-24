@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import WanderPointContainer from '../components/wanderPointContainer'
-import UnescoComponent from '../components/Core/unescoConponent'
+import UnescoComponent from '../components/Core/unescoComponent'
 
 
 class WanderpointScreen extends React.Component {
