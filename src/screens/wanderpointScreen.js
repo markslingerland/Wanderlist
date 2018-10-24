@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import WanderPointContainer from '../components/wanderPointContainer'
+import UnescoComponent from '../components/Core/unescoComponent'
 
 
 class WanderpointScreen extends React.Component {
@@ -19,7 +20,8 @@ class WanderpointScreen extends React.Component {
     render() {
         return (
         <ImageBackground source={{uri: this.props.selectedPoint.image}} resizeMode='cover' style={styles.container}>
-                <WanderPointContainer selectedPoint={this.props.selectedPoint}/>
+            <UnescoComponent selectedPoint = {this.props.selectedPoint}/>
+            <WanderPointContainer selectedPoint={this.props.selectedPoint}/>
         </ImageBackground>
         );
     }
