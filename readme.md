@@ -6,7 +6,7 @@
 
 **Mark**: Research, prototyping, development and redux structure.
 
-**Alexandra**: Lorem ipsum dolor sit amet. Lorem ipsum.
+**Alexandra**: Mock-ups, Design, Front-end development, Research, Design implementation.
 
 **Roman**: Lorem ipsum dolor sit amet. Lorem ipsum.
 
@@ -31,12 +31,16 @@
 
 | Subject | Hours |
 | --- | --- |
-| value | value |
-| value | value |
-| value | value |
-| value | value |
-| value | value |
-| value | value |
+| Lessons  | 10 |
+| Subject with team | 20 |
+| Brainstorming | 15 |
+| Research UX / UI | 10 |
+| Mock-ups | 10 |
+| Research Adobe Experience Design | 5 |
+| Research expo and implementing | 15 |
+| Redux understanding | 15 |
+| Design Implementation | 15 |
+| Feature Implementation | 20 |
 | **total** | **135**|
 
 ### Roman
@@ -78,9 +82,9 @@ According to the feedback of my team, I have done a very good and thorough resea
 
 ### Alexandra
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus volutpat lacus ut eros ornare maximus. Fusce tempus libero vitae urna accumsan accumsan. Proin justo urna, vestibulum id sollicitudin ac, malesuada ac quam. Cras commodo, augue laoreet mollis interdum, massa erat feugiat nibh, quis euismod metus nunc at velit.
+I’ve grown and learned a lot during this mobile development. I always wantend to do something with React-native in combination with redux and expo. I’m happy to continue this work in the mobile project and I hope to develop myself even more as a developer and designer. I think we should get a 4 for this project. I think the technologies we chose is really great and innovative. Not to mention that we achieved a lot and we can even do more with the mobile project
 
-**Personal Grade:**
+**Personal Grade: 4**
 
 ### Roman
 

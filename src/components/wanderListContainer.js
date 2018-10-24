@@ -50,14 +50,14 @@ class WanderlistContainer extends React.Component {
 
 const mapStateToProps = state => {
     const { points } = state.points;
-    if(state.points.filter.length > 0){
-        let filteredPoints = points.filter(item => item.category == "Temple");
-        console.log(filteredPoints); 
-        let storedPoints = filteredPoints.map(point => ({ key: point.id, ...point }));
-        return {
-            points: storedPoints
-        };
-    }
+    // if(state.points.filter.length > 0){
+    //     let filteredPoints = points.filter(item => item.category == "Temple");
+    //     console.log(filteredPoints); 
+    //     let storedPoints = filteredPoints.map(point => ({ key: point.id, ...point }));
+    //     return {
+    //         points: storedPoints
+    //     };
+    // }
     let storedPoints = points.map(point => ({ key: point.id, ...point }));
     return {
       points: storedPoints
