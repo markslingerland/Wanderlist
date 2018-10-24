@@ -2,12 +2,12 @@
 
 ## Division of Work
 
-|Name|Main tasks|
-|---|---|---|
-|Mark|Lorem ipsum dolor sit amet. Lorem ipsum.|
-|Alexandra|Lorem ipsum dolor sit amet. Lorem ipsum.|
-|Roman|Lorem ipsum dolor sit amet. Lorem ipsum.|
-|Wessel|Research, presentation, data, planning.|
+| Name | Main tasks |
+| --- | --- | --- |
+| Mark | Lorem ipsum dolor sit amet. Lorem ipsum. |
+| Alexandra | Lorem ipsum dolor sit amet. Lorem ipsum. |
+| Roman | Lorem ipsum dolor sit amet. Lorem ipsum. |
+| Wessel | Research, presentation, data, planning. |
 
 
 ## Reflection
