@@ -12,6 +12,55 @@
 
 **Wessel**: Research, presentation, data, planning.
 
+## Time Allotment
+
+### Mark
+
+| Subject | Hours |
+| --- | --- |
+| value | value |
+| value | value |
+| value | value |
+| value | value |
+| value | value |
+| value | value |
+| **total** | **130**|
+
+### Alexandra
+
+| Subject | Hours |
+| --- | --- |
+| value | value |
+| value | value |
+| value | value |
+| value | value |
+| value | value |
+| value | value |
+| **total** | **130**|
+
+### Roman
+
+| Subject | Hours |
+| --- | --- |
+| value | value |
+| value | value |
+| value | value |
+| value | value |
+| value | value |
+| value | value |
+| **total** | **130**|
+
+### Wessel
+
+| Subject | Hours |
+| --- | --- |
+| value | value |
+| value | value |
+| value | value |
+| value | value |
+| value | value |
+| value | value |
+
 ## Reflection
 
 ### Mark
