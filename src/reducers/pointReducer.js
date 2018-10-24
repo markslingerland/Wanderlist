@@ -3,10 +3,11 @@ export const GET_POINTS_SUCCESS = "Wanderlist/points/LOAD_SUCCESS";
 export const GET_POINTS_FAIL = "Wanderlist/points/LOAD_FAIL";
 export const TOGGLE_FAVORITE_POINT = "Wanderlist/points/TOGGLE_FAVORITE_POINT";
 export const SELECT_POINT = "Wanderlist/points/SELECT_POINT";
+export const SET_VISIBILITY_FILTER = "Wanderlist/points/SET_VISIBILITY_FILTER";
 
 
 
-export default function points(state = { points: [] }, action) {
+export default function points(state = {filter: VisibilityFilters.SHOW_ALL, points: [] }, action) {
   switch (action.type) {
     case GET_POINTS:
       return { ...state, loading: true };
@@ -16,8 +17,9 @@ export default function points(state = { points: [] }, action) {
       return { ...state, loading: false, error: action.err };
     case SELECT_POINT:
       return { ...state, selectedPoint: action.point  };
+    case SET_VISIBILITY_FILTER:
+    return { ...state, filter: action.filter  };
     case TOGGLE_FAVORITE_POINT:
-    console.log()
       return {...state, points: state.points.map(point =>
         (point.id == action.id)
           ? {...point, isFavorite: !point.isFavorite}
@@ -36,6 +38,11 @@ export function selectPoint(point) {
   return ({ type: SELECT_POINT, point: point })
 }
 
+export const setVisibilityFilter = filter => ({
+  type: 'SET_VISIBILITY_FILTER',
+  filter
+})
+
 export function listPoints() {
   response = [
     {"id": 1, "country":"Japan", "title":"Mount Fuji",   "image":"https://lh4.googleusercontent.com/proxy/AVzBFky7FB_-yWgB_SZzS5a2ZiXdExSGeVO50P_a_NUHXtxEun18WiD18RZMKi0MrDaZ1ZsrDn3cFIeymhq7HmcYIVvF54yleUkUIP_3chYmhbXorGkICw659PCvuS2npQ7Zn0XpEeHggrvl5JiPffyyOs4l9w=w408-h272-k-no", "area":"Shizuoka", "isFavorite": false, "latitude":35.360554,"longitude":138.727783, "UNESCO":false, "tags":["tag 1","tag 2","tag 3"], "category":"Temple","description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum" },
@@ -51,4 +58,10 @@ export function listPoints() {
     ]
   return ({ type: GET_POINTS_SUCCESS, data : JSON.parse(JSON.stringify(response))
   })
+}
+
+export const VisibilityFilters = {
+  SHOW_ALL: 'SHOW_ALL',
+  SHOW_COMPLETED: 'SHOW_COMPLETED',
+  SHOW_ACTIVE: 'SHOW_ACTIVE'
 }

@@ -33,9 +33,6 @@ const mapDispatchToProps = {
 };
 
 export default connect(null, mapDispatchToProps)(FavoriteComponent)
-
-
-
   const styles = StyleSheet.create({
     container: {
         width: '200%',
