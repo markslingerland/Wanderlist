@@ -18,7 +18,7 @@ class FavoriteComponent extends React.Component {
                     <FontAwesome 
                     name='star' 
                     size={32} 
-                    color="rgba(255, 255, 255, 0.5)" 
+                    color="rgba(255, 255, 255, 0.6)" 
                     />
                 }
             </View>

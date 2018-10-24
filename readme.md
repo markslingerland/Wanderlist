@@ -8,7 +8,7 @@
 
 **Alexandra**: Lorem ipsum dolor sit amet. Lorem ipsum.
 
-**Roman**: Lorem ipsum dolor sit amet. Lorem ipsum.
+**Roman**: Research, data design, design implementation, development.
 
 **Wessel**: Research, presentation, data, planning.
 
@@ -43,12 +43,13 @@
 
 | Subject | Hours |
 | --- | --- |
-| value | value |
-| value | value |
-| value | value |
-| value | value |
-| value | value |
-| value | value |
+| Lessons | 10 |
+| Subject decision with team | 20 |
+| Brainstorming | 15 |
+| Expo research and practice | 30 |
+| Redux understanding | 20 |
+| Design implementation | 10 |
+| Feature implementation | 30 | 
 | **total** | **135**|
 
 ### Wessel
