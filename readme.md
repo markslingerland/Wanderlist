@@ -8,7 +8,7 @@
 
 **Alexandra**: Mock-ups, Design, Front-end development, Research, Design implementation.
 
-**Roman**: Lorem ipsum dolor sit amet. Lorem ipsum.
+**Roman**: Research, data design, design implementation, development.
 
 **Wessel**: Research, presentation, data, planning.
 
@@ -47,12 +47,13 @@
 
 | Subject | Hours |
 | --- | --- |
-| value | value |
-| value | value |
-| value | value |
-| value | value |
-| value | value |
-| value | value |
+| Lessons | 10 |
+| Subject decision with team | 20 |
+| Brainstorming | 15 |
+| Expo research and practice | 30 |
+| Redux understanding | 20 |
+| Design implementation | 10 |
+| Feature implementation | 30 | 
 | **total** | **135**|
 
 ### Wessel
@@ -88,9 +89,10 @@ I’ve grown and learned a lot during this mobile development. I always wantend 
 
 ### Roman
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus volutpat lacus ut eros ornare maximus. Fusce tempus libero vitae urna accumsan accumsan. Proin justo urna, vestibulum id sollicitudin ac, malesuada ac quam. Cras commodo, augue laoreet mollis interdum, massa erat feugiat nibh, quis euismod metus nunc at velit.
+I prize myself in being an all-round programmer. I like the interaction between Front-end and Back-end and love both sides. This project I've helped with designing certain aspects as well as implementing them.
+This also lets me help my fellow programmers whenever they need help in either of these fields. I believe my productivity has been very good during this project and I cannot wait to continue during the upcoming weeks.
 
-**Personal Grade:**
+**Personal Grade: 4**
 
 ### Wessel
 
