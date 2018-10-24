@@ -4,7 +4,7 @@
 
 ### Main tasks
 
-**Mark**: Lorem ipsum dolor sit amet. Lorem ipsum.
+**Mark**: Research, prototyping, development and redux structure.
 
 **Alexandra**: Lorem ipsum dolor sit amet. Lorem ipsum.
 
@@ -18,12 +18,13 @@
 
 | Subject | Hours |
 | --- | --- |
-| value | value |
-| value | value |
-| value | value |
-| value | value |
-| value | value |
-| value | value |
+| Lessons | 10 |
+| Subject decision with team | 20 |
+| Feature brainstorming sessions | 15 |
+| Expo research and practice | 20 |
+| Redux research | 20 |
+| Redux integration | 30 |
+| General feature implementation | 20 |
 | **total** | **135**|
 
 ### Alexandra
@@ -72,21 +73,20 @@
 
 ### Mark
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus volutpat lacus ut eros ornare maximus. Fusce tempus libero vitae urna accumsan accumsan. Proin justo urna, vestibulum id sollicitudin ac, malesuada ac quam. Cras commodo, augue laoreet mollis interdum, massa erat feugiat nibh, quis euismod metus nunc at velit.
-
-**Grade:**
+According to the feedback of my team, I have done a very good and thorough research on expo and the redux structure. This really payed off during the development stage. I'm very glad that my input was valuable for the result of our application. Next time I want to be more involved in making the presentation, because I tend to forget those things while developing. I will be very happy to go further with this application during the course Mobile Project.
+**Personal Grade: 4**
 
 ### Alexandra
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus volutpat lacus ut eros ornare maximus. Fusce tempus libero vitae urna accumsan accumsan. Proin justo urna, vestibulum id sollicitudin ac, malesuada ac quam. Cras commodo, augue laoreet mollis interdum, massa erat feugiat nibh, quis euismod metus nunc at velit.
 
-**Grade:**
+**Personal Grade:**
 
 ### Roman
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus volutpat lacus ut eros ornare maximus. Fusce tempus libero vitae urna accumsan accumsan. Proin justo urna, vestibulum id sollicitudin ac, malesuada ac quam. Cras commodo, augue laoreet mollis interdum, massa erat feugiat nibh, quis euismod metus nunc at velit.
 
-**Grade:**
+**Personal Grade:**
 
 ### Wessel
 
