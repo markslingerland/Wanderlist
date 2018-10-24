@@ -5,16 +5,11 @@
 | Name | Main tasks |
 | --- | --- | --- |
 | Mark | Lorem ipsum dolor sit amet. Lorem ipsum. |
+
+
 | Alexandra | Lorem ipsum dolor sit amet. Lorem ipsum. |
 | Roman | Lorem ipsum dolor sit amet. Lorem ipsum. |
 | Wessel | Research, presentation, data, planning. |
-
-
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
-
 
 ## Reflection
 
