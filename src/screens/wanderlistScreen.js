@@ -1,11 +1,19 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import WanderListContainer from '../components/wanderListContainer'
 import LogoTitle from '../components/logoTitle'
+import { MaterialIcons } from '@expo/vector-icons';
+
 
 export default class WanderlistScreen extends React.Component {
     static navigationOptions = {
         // headerTitle instead of title
+        headerLeft: <TouchableOpacity style={{marginLeft: 13}}  onPress={() => alert("test")}>
+                        <MaterialIcons
+                            name="filter-list"
+                            size={30}
+                            color="#293241"/>
+                    </TouchableOpacity>,
         headerTitle: <LogoTitle />
     };
     

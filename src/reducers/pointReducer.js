@@ -3,10 +3,11 @@ export const GET_POINTS_SUCCESS = "Wanderlist/points/LOAD_SUCCESS";
 export const GET_POINTS_FAIL = "Wanderlist/points/LOAD_FAIL";
 export const TOGGLE_FAVORITE_POINT = "Wanderlist/points/TOGGLE_FAVORITE_POINT";
 export const SELECT_POINT = "Wanderlist/points/SELECT_POINT";
+export const SET_VISIBILITY_FILTER = "Wanderlist/points/SET_VISIBILITY_FILTER";
 
 
 
-export default function points(state = { points: [] }, action) {
+export default function points(state = {filter: VisibilityFilters.SHOW_ALL, points: [] }, action) {
   switch (action.type) {
     case GET_POINTS:
       return { ...state, loading: true };
@@ -16,8 +17,9 @@ export default function points(state = { points: [] }, action) {
       return { ...state, loading: false, error: action.err };
     case SELECT_POINT:
       return { ...state, selectedPoint: action.point  };
+    case SET_VISIBILITY_FILTER:
+    return { ...state, filter: action.filter  };
     case TOGGLE_FAVORITE_POINT:
-    console.log()
       return {...state, points: state.points.map(point =>
         (point.id == action.id)
           ? {...point, isFavorite: !point.isFavorite}
@@ -36,6 +38,11 @@ export function selectPoint(point) {
   return ({ type: SELECT_POINT, point: point })
 }
 
+export const setVisibilityFilter = filter => ({
+  type: 'SET_VISIBILITY_FILTER',
+  filter
+})
+
 export function listPoints() {
   response = [
     {"id": 1, "country":"Japan", "title":"Mount Fuji",   "image":"https://lh4.googleusercontent.com/proxy/AVzBFky7FB_-yWgB_SZzS5a2ZiXdExSGeVO50P_a_NUHXtxEun18WiD18RZMKi0MrDaZ1ZsrDn3cFIeymhq7HmcYIVvF54yleUkUIP_3chYmhbXorGkICw659PCvuS2npQ7Zn0XpEeHggrvl5JiPffyyOs4l9w=w408-h272-k-no", "area":"Shizuoka", "isFavorite": false, "latitude":35.360554,"longitude":138.727783, "UNESCO":true, "tags":["Mountain","Art","Volcano"], "category":"Nature","description":"Mount Fuji is the highest mountain in Japan at 3,776.24 m 2nd-highest peak of an island (volcanic) in Asia, and 7th-highest peak of an island in the world. It is a dormant stratovolcano that last erupted in 1707–1708. Mount Fuji lies about 100 kilometers south-west of Tokyo, and can be seen from there on a clear day. Mount Fuji's exceptionally symmetrical cone, which is snow-capped for about 5 months a year, is a well-known symbol of Japan and it is frequently depicted in art and photographs, as well as visited by sightseers and climbers." },
@@ -52,4 +59,10 @@ export function listPoints() {
     ]
   return ({ type: GET_POINTS_SUCCESS, data : JSON.parse(JSON.stringify(response))
   })
+}
+
+export const VisibilityFilters = {
+  SHOW_ALL: 'SHOW_ALL',
+  SHOW_COMPLETED: 'SHOW_COMPLETED',
+  SHOW_ACTIVE: 'SHOW_ACTIVE'
 }
