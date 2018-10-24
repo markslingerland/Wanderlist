@@ -7,7 +7,7 @@ export const SET_VISIBILITY_FILTER = "Wanderlist/points/SET_VISIBILITY_FILTER";
 
 
 
-export default function points(state = {filter: VisibilityFilters.SHOW_ALL, points: [] }, action) {
+export default function points(state = {filter: ["Temple"], points: [] }, action) {
   switch (action.type) {
     case GET_POINTS:
       return { ...state, loading: true };
@@ -18,7 +18,7 @@ export default function points(state = {filter: VisibilityFilters.SHOW_ALL, poin
     case SELECT_POINT:
       return { ...state, selectedPoint: action.point  };
     case SET_VISIBILITY_FILTER:
-    return { ...state, filter: action.filter  };
+      return { ...state, filter: action.filter  };
     case TOGGLE_FAVORITE_POINT:
       return {...state, points: state.points.map(point =>
         (point.id == action.id)
@@ -58,10 +58,4 @@ export function listPoints() {
     ]
   return ({ type: GET_POINTS_SUCCESS, data : JSON.parse(JSON.stringify(response))
   })
-}
-
-export const VisibilityFilters = {
-  SHOW_ALL: 'SHOW_ALL',
-  SHOW_COMPLETED: 'SHOW_COMPLETED',
-  SHOW_ACTIVE: 'SHOW_ACTIVE'
 }
