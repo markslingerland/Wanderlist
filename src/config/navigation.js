@@ -51,6 +51,7 @@ export const RootStack = createBottomTabNavigator({
     Itinerary: ItineraryStack,
     Profile: ProfileStack,
   }, {
+	initialRouteName: "Wanderlist",
     navigationOptions: ({ navigation }) => ({
       	tabBarIcon: ({ focused, horizontal, tintColor }) => {
 			const { routeName } = navigation.state;
