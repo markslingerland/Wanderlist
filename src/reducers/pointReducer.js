@@ -23,9 +23,14 @@ export default function points(state = {filter: [], points: [] }, action) {
       return { ...state, filter: action.filter };
     case ADD_TAG_TO_POINT:
       return {...state, points: state.points.map(point =>
-        (point.id == action.id)
-          ? {...point, tags: point.tags.concat(action.tag)}
-          : point
+        (point.id == action.id) ?
+            (point.tags.indexOf(action.tag) == -1) ?
+              {...point, tags: point.tags.concat(action.tag)}
+            :
+              //Find a way to return an error because item is already in tag list
+              point
+          : 
+            point
       ) }
     case TOGGLE_FAVORITE_POINT:
       return {...state, points: state.points.map(point =>
