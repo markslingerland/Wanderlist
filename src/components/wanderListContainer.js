@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Text, View, ListView, Image, TouchableWithoutFeedback} from 'react-native';
-import { listPoints, selectPoint } from '../reducers/pointReducer'
+import { listPoints, selectPoint, addTagToPoint } from '../reducers/pointReducer'
 import FavoriteComponent from '../components/Core/favoriteComponent'
 
 class WanderlistContainer extends React.Component {
@@ -12,6 +12,7 @@ class WanderlistContainer extends React.Component {
     onPress(point){
         console.log(this.props)
         this.props.selectPoint(point);
+        //this.props.addTagToPoint(point.id, "Testtag")
         this.props.navigation.navigate('Wanderpoint');
     }
 
@@ -64,7 +65,8 @@ const mapStateToProps = state => {
   
 const mapDispatchToProps = {
     listPoints,
-    selectPoint 
+    selectPoint,
+    addTagToPoint 
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(WanderlistContainer)
