@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import WanderPointContainer from '../components/wanderPointContainer'
 import UnescoComponent from '../components/Core/unescoComponent'
 
-
 class WanderpointScreen extends React.Component {
     componentWillMount() {
         this.props.navigation.setParams({ title: this.props.selectedPoint.title }) 

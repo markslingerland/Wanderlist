@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, Text, View, ListView, Image, Alert, TouchableWithoutFeedback, Modal} from 'react-native';
+import { StyleSheet, Text, View, ListView, Image, TouchableWithoutFeedback} from 'react-native';
 import { listPoints, selectPoint } from '../reducers/pointReducer'
 import FavoriteComponent from '../components/Core/favoriteComponent'
 
@@ -36,9 +36,6 @@ class WanderlistContainer extends React.Component {
                         <Text style={styles.title}>{rowData.title}</Text>
                         <Text style={styles.subtitle}>{rowData.area},{rowData.country}</Text>
                         {(rowData.isFavorite) ? <FavoriteComponent state={true} itemId={rowData.id} /> : <FavoriteComponent state={false} itemId={rowData.id}/> }
-                        
-                        
-
                     </View>
                 </View>
                 </TouchableWithoutFeedback>
@@ -50,26 +47,27 @@ class WanderlistContainer extends React.Component {
 
 const mapStateToProps = state => {
     const { points } = state.points;
-    // if(state.points.filter.length > 0){
-    //     let filteredPoints = points.filter(item => item.category == "Temple");
-    //     console.log(filteredPoints); 
-    //     let storedPoints = filteredPoints.map(point => ({ key: point.id, ...point }));
-    //     return {
-    //         points: storedPoints
-    //     };
-    // }
+    if(state.points.filter.length > 0){
+        // let categories = [...new Set(points.map(point => point.category))]
+
+        let filteredPoints = points.filter(item => state.points.filter.includes(item.category));
+        let storedPoints = filteredPoints.map(point => ({ key: point.id, ...point }));
+        return {
+            points: storedPoints
+        };
+    }
     let storedPoints = points.map(point => ({ key: point.id, ...point }));
     return {
-      points: storedPoints
+        points: storedPoints
     };
-  };
+};
   
-  const mapDispatchToProps = {
+const mapDispatchToProps = {
     listPoints,
-    selectPoint
-  };
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(WanderlistContainer)
+    selectPoint 
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(WanderlistContainer)
 
 const styles = StyleSheet.create({
     list: {
