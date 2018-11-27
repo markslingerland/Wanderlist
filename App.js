@@ -11,7 +11,7 @@ import { RootStack } from './src/config/navigation'
 const loggerMiddleware = createLogger();
 const rootReducer = combineReducers({repos: reducer, points})
 
-const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, loggerMiddleware));
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 
 export default class App extends Component {

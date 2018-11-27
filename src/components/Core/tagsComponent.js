@@ -1,18 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { StyleSheet, Text, View, ListView, Image, TouchableWithoutFeedback} from 'react-native';
-import { listPoints, selectPoint, addTagToPoint } from '../reducers/pointReducer'
-import FavoriteComponent from '../components/Core/favoriteComponent'
+import { StyleSheet, Text, View, ListView, Image, Alert, TouchableWithoutFeedback, Modal} from 'react-native';
 
-class WanderlistContainer extends React.Component {
-    componentDidMount() {
-        this.props.listPoints();
-    }
+
+export default class TagsComponent extends React.Component {
 
     onPress(point){
         console.log(this.props)
         this.props.selectPoint(point);
-        //this.props.addTagToPoint(point.id, "Testtag")
         this.props.navigation.navigate('Wanderpoint');
     }
 
@@ -23,10 +17,8 @@ class WanderlistContainer extends React.Component {
         <ListView
             style={styles.list}
             enableEmptySections={true}
-            dataSource={ds.cloneWithRows(this.props.points)}
+            dataSource={ds.cloneWithRows(this.props.selectedPoint.tags)}
             renderRow={(rowData) => 
-                <TouchableWithoutFeedback
-                onPress={() => this.onPress(rowData)}>
                 <View 
                 style={styles.item} >
                     <Image
@@ -37,39 +29,15 @@ class WanderlistContainer extends React.Component {
                         <Text style={styles.title}>{rowData.title}</Text>
                         <Text style={styles.subtitle}>{rowData.area},{rowData.country}</Text>
                         {(rowData.isFavorite) ? <FavoriteComponent state={true} itemId={rowData.id} /> : <FavoriteComponent state={false} itemId={rowData.id}/> }
+                        
+
                     </View>
                 </View>
-                </TouchableWithoutFeedback>
             }
         />
         );
     }
 }
-
-const mapStateToProps = state => {
-    const { points } = state.points;
-    if(state.points.filter.length > 0){
-        // let categories = [...new Set(points.map(point => point.category))]
-
-        let filteredPoints = points.filter(item => state.points.filter.includes(item.category));
-        let storedPoints = filteredPoints.map(point => ({ key: point.id, ...point }));
-        return {
-            points: storedPoints
-        };
-    }
-    let storedPoints = points.map(point => ({ key: point.id, ...point }));
-    return {
-        points: storedPoints
-    };
-};
-  
-const mapDispatchToProps = {
-    listPoints,
-    selectPoint,
-    addTagToPoint 
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(WanderlistContainer)
 
 const styles = StyleSheet.create({
     list: {
