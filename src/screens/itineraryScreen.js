@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import ModalFilter from '../components/modalFilter';
 
 export default class ItineraryScreen extends React.Component {
     render() {
         return (
         <View style={styles.container}>
-            <Text>Itinerary!</Text>
+            <ModalFilter/>
         </View>
         );
     }
