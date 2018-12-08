@@ -3,13 +3,14 @@ export const GET_POINTS_SUCCESS = "Wanderlist/points/LOAD_SUCCESS";
 export const GET_POINTS_FAIL = "Wanderlist/points/LOAD_FAIL";
 export const TOGGLE_FAVORITE_POINT = "Wanderlist/points/TOGGLE_FAVORITE_POINT";
 export const SELECT_POINT = "Wanderlist/points/SELECT_POINT";
-export const SET_VISIBILITY_FILTER = "Wanderlist/points/SET_VISIBILITY_FILTER";
+export const SET_VISIBILITY_CATEGORY_FILTER = "Wanderlist/points/SET_VISIBILITY_CATEGORY_FILTER";
+export const SET_VISIBILITY_TAG_FILTER = "Wanderlist/points/SET_VISIBILITY_TAG_FILTER";
 export const ADD_TAG_TO_POINT = "Wanderlist/points/ADD_TO_TAGS_POINT";
 
 
 
 
-export default function points(state = {filter: [], points: [] }, action) {
+export default function points(state = {categoryFilter: [], tagFilter:[], points: [] }, action) {
   switch (action.type) {
     case GET_POINTS:
       return { ...state, loading: true };
@@ -19,8 +20,10 @@ export default function points(state = {filter: [], points: [] }, action) {
       return { ...state, loading: false, error: action.err };
     case SELECT_POINT:
       return { ...state, selectedPoint: action.point };
-    case SET_VISIBILITY_FILTER:
-      return { ...state, filter: action.filter };
+    case SET_VISIBILITY_CATEGORY_FILTER:
+      return { ...state, categoryFilter: action.categoryFilter };
+    case SET_VISIBILITY_TAG_FILTER:
+      return { ...state, tagFilter: action.tagFilter };
     case ADD_TAG_TO_POINT:
       return {...state, points: state.points.map(point =>
         (point.id == action.id) ?
@@ -51,8 +54,12 @@ export function selectPoint(point) {
   return ({ type: SELECT_POINT, point: point })
 }
 
-export function setVisibilityFilter(filter){ 
-  return ({ type: SET_VISIBILITY_FILTER, filter: filter })
+export function setVisibilityCategoryFilter(categoryFilter){ 
+  return ({ type: SET_VISIBILITY_CATEGORY_FILTER, categoryFilter: categoryFilter })
+}
+
+export function setVisibilityTagFilter(tagFilter){
+  return ({ type: SET_VISIBILITY_TAG_FILTER, tagFilter: tagFilter})
 }
 
 export function addTagToPoint(id, tag){
