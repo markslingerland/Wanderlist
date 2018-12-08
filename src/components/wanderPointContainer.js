@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView, Image, } from 'react-native';
+import TagsComponent from '../components/Core/tagsComponent'
+
 
 export default class WanderPointContainer extends React.Component {
     render() {
@@ -7,6 +9,9 @@ export default class WanderPointContainer extends React.Component {
         <View style = {styles.inner}>
             <ScrollView>
                 <Text style = {styles.text}> {this.props.selectedPoint.description}</Text>
+                <View style={styles.tagContainer} >
+                    <TagsComponent selectedPoint = {this.props.selectedPoint} />
+                </View>
            </ScrollView>
         </View>
         );
@@ -26,5 +31,8 @@ const styles = StyleSheet.create({
     },
     text: {
         textAlign:'center'
+    },
+    tagContainer: {
+        marginTop: '1%'
     }
 });
