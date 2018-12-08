@@ -1,88 +1,47 @@
 import React from 'react';
-import { StyleSheet, Text, View, ListView, Image, Alert, TouchableWithoutFeedback, Modal} from 'react-native';
+import { StyleSheet, Text, View, ListView} from 'react-native';
 
 
 export default class TagsComponent extends React.Component {
 
-    onPress(point){
-        console.log(this.props)
-        this.props.selectPoint(point);
-        this.props.navigation.navigate('Wanderpoint');
-    }
 
     render() {
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        console.log(this.props.selectedPoint.tags)
 
         return (
-        <ListView
-            style={styles.list}
-            enableEmptySections={true}
-            dataSource={ds.cloneWithRows(this.props.selectedPoint.tags)}
-            renderRow={(rowData) => 
-                <View 
-                style={styles.item} >
-                    <Image
-                        style={styles.backgroundImage}
-                        source={{ uri: rowData.image }}
-                    />
-                    <View style={styles.header}>
-                        <Text style={styles.title}>{rowData.title}</Text>
-                        <Text style={styles.subtitle}>{rowData.area},{rowData.country}</Text>
-                        {(rowData.isFavorite) ? <FavoriteComponent state={true} itemId={rowData.id} /> : <FavoriteComponent state={false} itemId={rowData.id}/> }
-                        
-
+        <View>
+            <ListView
+                horizontal = {true}
+                style={styles.tags}
+                enableEmptySections={true}
+                dataSource={ds.cloneWithRows(this.props.selectedPoint.tags)}
+                renderRow={(rowData) => 
+                    <View style={styles.tag}>
+                        <Text style={styles.tagTitle}>{rowData}</Text>
                     </View>
-                </View>
-            }
-        />
+                }
+            />
+
+        </View>
         );
     }
 }
 
+
 const styles = StyleSheet.create({
-    list: {
-        backgroundColor: '#fff',
-        width: '100%'
-    },
-    item: {
-        marginLeft: '3%',
-        marginRight: '3%',
-        marginTop: '3%',
-        height: 250,
-        borderRadius: 10,
-        shadowOffset:{  width: 0,  height: 3,  },
-        shadowColor: 'black',
-        shadowOpacity: 0.4,
-        shadowRadius: 4,
-        backgroundColor: 'rgba(45,45,45,0.0)',
-    },
-    header: {
-        backgroundColor: 'rgba(255,255,255,0.6)',
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
-        padding:10,
-        position: 'absolute',
-        top: 0,
-        left: 0, 
+    tags: {
         width: '100%',
-        flex: 1 ,    
     },
-    title: {
-        fontSize: 20,
-    },
-    subtitle: {
-        fontSize: 10,         
-    },
-    backgroundImage: {
-        flex: 1,
-        resizeMode: "cover",
-        marginTop: '3%',
-        position: 'absolute',
-        top: 0,
-        left: 0,   
-        width: '100%',
-        height: '130%',
-        top: '-5.5%',
+    tag: {
+        backgroundColor:"#EE6C4D",
+        margin: 4,
+        padding: 5,
         borderRadius: 10,
-        }
+
+    },
+    tagTitle: {
+        color: 'white',
+    }
+    
 });
