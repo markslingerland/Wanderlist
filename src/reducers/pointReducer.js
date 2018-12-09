@@ -6,11 +6,9 @@ export const SELECT_POINT = "Wanderlist/points/SELECT_POINT";
 export const SET_VISIBILITY_CATEGORY_FILTER = "Wanderlist/points/SET_VISIBILITY_CATEGORY_FILTER";
 export const SET_VISIBILITY_TAG_FILTER = "Wanderlist/points/SET_VISIBILITY_TAG_FILTER";
 export const ADD_TAG_TO_POINT = "Wanderlist/points/ADD_TO_TAGS_POINT";
+export const SET_SEARCH_FILTER = "Wanderlist/points/SET_SEARCH_FILTER"
 
-
-
-
-export default function points(state = {categoryFilter: [], tagFilter:[], points: [] }, action) {
+export default function points(state = {categoryFilter: [], tagFilter:[], points: [], visiblePoints: [], filterKeyword: ""}, action) {
   switch (action.type) {
     case GET_POINTS:
       return { ...state, loading: true };
@@ -24,6 +22,9 @@ export default function points(state = {categoryFilter: [], tagFilter:[], points
       return { ...state, categoryFilter: action.categoryFilter };
     case SET_VISIBILITY_TAG_FILTER:
       return { ...state, tagFilter: action.tagFilter };
+    case SET_SEARCH_FILTER:
+      console.log(action.filterKeyword)
+      return {...state, filterKeyword: action.filterKeyword}
     case ADD_TAG_TO_POINT:
       return {...state, points: state.points.map(point =>
         (point.id == action.id) ?
@@ -65,6 +66,10 @@ export function setVisibilityTagFilter(tagFilter){
 export function addTagToPoint(id, tag){
   return ({ type: ADD_TAG_TO_POINT, id: id, tag: tag })
 }
+
+export function filterPoints(filterKeyword){
+  return ({type: SET_SEARCH_FILTER, filterKeyword: filterKeyword})
+} 
 
 export function listPoints() {
   response = [
