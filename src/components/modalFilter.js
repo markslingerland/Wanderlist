@@ -12,24 +12,26 @@ export default class ModalFilter extends Component {
 
   render() {
     return (
-      <View style={{marginTop: 22}}>
-        <Modal
-          animationType="slide"
-          transparent={false}
+      <View>
+        <Modal 
+          animationType="fade"
+          transparent={true}
           visible={this.state.modalVisible}
           onRequestClose={() => {
             Alert.alert('Modal has been closed.');
           }}>
-          <View style={{marginTop: 22}}>
-            <View>
-              <Text>Hello World!</Text>
+          <View style={styles.modal}>
+            <View style={styles.outer}>
+              <View>
+                <Text>Hello World!</Text>
 
-              <TouchableHighlight
-                onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                }}>
-                <Text>Hide Modal</Text>
-              </TouchableHighlight>
+                <TouchableHighlight
+                  onPress={() => {
+                    this.setModalVisible(!this.state.modalVisible);
+                  }}>
+                  <Text>Hide Modal</Text>
+                </TouchableHighlight>
+              </View>
             </View>
           </View>
         </Modal>
@@ -44,3 +46,18 @@ export default class ModalFilter extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+    modal: {
+      backgroundColor:'rgba(0,0,0,0.5)',
+      height: "100%"
+    },
+    outer: {
+      marginTop: "20%",
+      marginLeft: "10%",
+      width: "80%",
+      height: "80%",
+      backgroundColor: "#e7e7e7",
+      borderRadius: 10
+    },
+});
