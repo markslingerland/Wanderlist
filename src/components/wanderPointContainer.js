@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView, Image, } from 'react-native';
 import TagsComponent from '../components/Core/tagsComponent'
+import AddTagComponent from '../components/Core/addTagComponent'
 
 
 export default class WanderPointContainer extends React.Component {

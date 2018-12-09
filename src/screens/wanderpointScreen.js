@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import WanderPointContainer from '../components/wanderPointContainer'
 import UnescoComponent from '../components/Core/unescoComponent'
+import AddTagComponent from '../components/Core/addTagComponent'
 
 class WanderpointScreen extends React.Component {
     componentWillMount() {
@@ -20,6 +21,7 @@ class WanderpointScreen extends React.Component {
         return (
         <ImageBackground source={{uri: this.props.selectedPoint.image}} resizeMode='cover' style={styles.container}>
             <UnescoComponent selectedPoint = {this.props.selectedPoint}/>
+            {/* <AddTagComponent selectedPoint = {this.props.selectedPoint}/> */}
             <WanderPointContainer selectedPoint={this.props.selectedPoint}/>
         </ImageBackground>
         );
