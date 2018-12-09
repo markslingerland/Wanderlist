@@ -23,27 +23,16 @@ export default class ModalFilter extends Component {
           onRequestClose={() => {
             Alert.alert('Modal has been closed.');
           }}>
-          <View style={styles.modal}>
+          <TouchableHighlight style={styles.modal} onPress={() => {this.setModalVisible(!this.state.modalVisible);}}>
             <View style={styles.outer}>
-              <View>
-                <TouchableHighlight
-                  style={styles.exit}
-                  onPress={() => {
-                    this.setModalVisible(!this.state.modalVisible);
-                  }}>
-                  <MaterialIcons
-                  name="clear"
-                  size={20}
-                  />
-                </TouchableHighlight>
-                <RowItem style = {styles.inner}/>
+              <View style = {styles.inner}>
+                <RowItem/>
               </View>
             </View>
-          </View>
+          </TouchableHighlight>
         </Modal>
 
         <TouchableHighlight 
-          style = {styles.press}
           onPress={() => {
             this.setModalVisible(true);
           }}>
@@ -65,20 +54,16 @@ const styles = StyleSheet.create({
     outer: {
       marginTop: "20%",
       marginLeft: "10%",
-      padding: "2%",
       width: "80%",
-      height: "80%",
+      height: "70%",
       backgroundColor: "#e7e7e7",
-      borderRadius: 10
+      borderRadius: 10,
+      
     },
-    inner: {
-      padding: "5%"
-    },
-    press: {
-
-    },
+    inner: {},
     exit: {
       flexDirection: "row",
-      justifyContent: "flex-end"
+      justifyContent: "flex-end",
+      margin: "2%"
     },
 });

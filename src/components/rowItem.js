@@ -6,9 +6,14 @@ export default class RowItem extends React.Component {
       return (
         <SectionList style = {styles.container}
             renderItem={({item, index, section}) => 
-                <Text style={styles.item} key={index}>{item}</Text>}
+                <View style={styles.item_container}>
+                    <Text key={index}>{item}</Text>
+                </View>}
+
             renderSectionHeader={({section: {title}}) => (
-                <Text style={styles.title}>{title}</Text>
+                <View style={styles.title_container}>
+                    <Text style={styles.title}>{title}</Text>
+                </View>
             )}
             sections={[
                 {title: 'Categories', data: ['item1', 'item2']},
@@ -21,16 +26,18 @@ export default class RowItem extends React.Component {
   }
 
 const styles = StyleSheet.create({
-    container: {
-       
+    item_container: {
+        backgroundColor: "#D3D3D3",
+        paddingLeft: 10,
+        padding: "4%",
+        borderBottomWidth: 1,
+        borderBottomColor: "#bcbcbc",
+    },
+    title_container: {
+        padding: "4%"
     },
     title: {
         fontSize: 30,
-        margin: "2%",
-        backgroundColor: "#e7e7e7"
     },
-    item: {
-        fontSize: 15,
-        margin: "2%",
-    }
+
   });
