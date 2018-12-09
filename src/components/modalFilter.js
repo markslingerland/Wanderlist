@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {Modal, Text, TouchableHighlight, View, Alert, StyleSheet} from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import RowItem from '../components/rowItem';
 
 export default class ModalFilter extends Component {
   state = {
-    modalVisible: true,
+    modalVisible: false,
   };
 
   setModalVisible(visible) {
@@ -14,6 +15,7 @@ export default class ModalFilter extends Component {
   render() {
     return (
       <View>
+       
         <Modal 
           animationType="fade"
           transparent={true}
@@ -34,13 +36,14 @@ export default class ModalFilter extends Component {
                   size={20}
                   />
                 </TouchableHighlight>
-
+                <RowItem style = {styles.inner}/>
               </View>
             </View>
           </View>
         </Modal>
 
-        <TouchableHighlight
+        <TouchableHighlight 
+          style = {styles.press}
           onPress={() => {
             this.setModalVisible(true);
           }}>
@@ -67,6 +70,12 @@ const styles = StyleSheet.create({
       height: "80%",
       backgroundColor: "#e7e7e7",
       borderRadius: 10
+    },
+    inner: {
+      padding: "5%"
+    },
+    press: {
+
     },
     exit: {
       flexDirection: "row",
