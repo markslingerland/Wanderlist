@@ -1,16 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { SearchBar } from 'react-native-elements';
 import { StyleSheet, Text, View, ListView, Image, TouchableWithoutFeedback} from 'react-native';
-import { listPoints, selectPoint, addTagToPoint } from '../reducers/pointReducer'
+import { listPoints, selectPoint, addTagToPoint, filterPoints } from '../reducers/pointReducer'
 import FavoriteComponent from '../components/Core/favoriteComponent'
 
 class WanderlistContainer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            query: "",
+        };
+    }
+
     componentDidMount() {
         this.props.listPoints();
     }
 
-    onPress(point){
+    handleQueryChange(query){  
         console.log(this.props)
+        this.setState(state => ({ ...state, query: query || "" }));
+        this.props.filterPoints(query);
+
+    }
+       
+
+    handleSearchCancel = () => this.handleQueryChange("");
+
+
+    onPress(point){
         this.props.selectPoint(point);
         //this.props.addTagToPoint(point.id, "Testtag")
         this.props.navigation.navigate('Wanderpoint');
@@ -20,6 +38,15 @@ class WanderlistContainer extends React.Component {
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
         return (
+        <View style={styles.searchBar}>
+            <SearchBar
+            containerStyle={{backgroundColor: '#FFF'}}
+                platform="ios"
+                onChangeText={text => this.handleQueryChange(text)}
+                onCancel={this.handleSearchCancel}
+                value={this.state.query}
+                cancelButtonTitle="Cancel"
+                placeholder='Search' />
         <ListView
             style={styles.list}
             enableEmptySections={true}
@@ -42,19 +69,28 @@ class WanderlistContainer extends React.Component {
                 </TouchableWithoutFeedback>
             }
         />
+        </View>
         );
     }
 }
 
 const mapStateToProps = state => {
     const { points } = state.points;
+    let resultPoints = points.map(point => ({ key: point.id, ...point }));
 
-    
     //CATEGORY+TAG FILTERING
-    if(state.points.categoryFilter.length > 0 || state.points.tagFilter.length > 0){
+    if(state.points.categoryFilter.length > 0 || state.points.tagFilter.length > 0 || state.points.filterKeyword.length > 0){
         // let categories = [...new Set(points.map(point => point.category))]
 
+        let storedPoints = [];
         let resultPoints = [];
+
+        if (state.points.filterKeyword.length > 0){
+            let filteredPoints = points.filter(item => item.title.includes(state.points.filterKeyword) || item.description.includes(state.points.filterKeyword) || item.area.includes(state.points.filterKeyword) || item.country.includes(state.points.filterKeyword));
+            let storedPoints = filteredPoints.map(point => ({ key: point.id, ...point }));
+            console.log("Filtered points: " + filteredPoints)
+            resultPoints = resultPoints.concat(storedPoints);
+        }
 
         // CATEGORY FILTERING
         if (state.points.categoryFilter.length > 0){
@@ -78,17 +114,18 @@ const mapStateToProps = state => {
         };
     }
 
-    //ELSE
-    let storedPoints = points.map(point => ({ key: point.id, ...point }));
     return {
-        points: storedPoints
+        points: resultPoints
     };
+    //ELSE
+    
 };
   
 const mapDispatchToProps = {
     listPoints,
     selectPoint,
-    addTagToPoint 
+    addTagToPoint,
+    filterPoints
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(WanderlistContainer)
@@ -96,7 +133,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(WanderlistContainer)
 const styles = StyleSheet.create({
     list: {
         backgroundColor: '#fff',
-        width: '100%'
+        width: '100%',
+        marginTop: '-3%'
+    },
+    searchBar: {
+        width: '100%',
+        marginTop: '6%'
     },
     item: {
         marginLeft: '3%',
