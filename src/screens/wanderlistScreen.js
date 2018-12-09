@@ -3,16 +3,15 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import WanderListContainer from '../components/wanderListContainer'
 import LogoTitle from '../components/logoTitle'
 import { MaterialIcons } from '@expo/vector-icons';
+import ModalFilter from '../components/modalFilter';
+
 
 
 export default class WanderlistScreen extends React.Component {
     static navigationOptions = {
         // headerTitle instead of title
         headerLeft: <TouchableOpacity style={{marginLeft: 13}}  onPress={() => alert("test")}>
-                        <MaterialIcons
-                            name="filter-list"
-                            size={30}
-                            color="#293241"/>
+                            <ModalFilter/>
                     </TouchableOpacity>,
         headerTitle: <LogoTitle />
     };

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Modal, Text, TouchableHighlight, View, Alert, StyleSheet} from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default class ModalFilter extends Component {
   state = {
@@ -23,14 +24,17 @@ export default class ModalFilter extends Component {
           <View style={styles.modal}>
             <View style={styles.outer}>
               <View>
-                <Text>Hello World!</Text>
-
                 <TouchableHighlight
+                  style={styles.exit}
                   onPress={() => {
                     this.setModalVisible(!this.state.modalVisible);
                   }}>
-                  <Text>Hide Modal</Text>
+                  <MaterialIcons
+                  name="clear"
+                  size={20}
+                  />
                 </TouchableHighlight>
+
               </View>
             </View>
           </View>
@@ -40,7 +44,10 @@ export default class ModalFilter extends Component {
           onPress={() => {
             this.setModalVisible(true);
           }}>
-          <Text>Show Modal</Text>
+          <MaterialIcons
+            name="filter-list"
+            size={30}
+            color="#293241"/>
         </TouchableHighlight>
       </View>
     );
@@ -55,9 +62,14 @@ const styles = StyleSheet.create({
     outer: {
       marginTop: "20%",
       marginLeft: "10%",
+      padding: "2%",
       width: "80%",
       height: "80%",
       backgroundColor: "#e7e7e7",
       borderRadius: 10
+    },
+    exit: {
+      flexDirection: "row",
+      justifyContent: "flex-end"
     },
 });
