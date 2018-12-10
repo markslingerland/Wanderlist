@@ -5,6 +5,8 @@ import { FontAwesome } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import { listCategories, getCategoryColor } from '../reducers/categoryReducer';
 import { addWanderpoint } from '../reducers/pointReducer';
+import { MapView } from 'expo';
+
 
 class AddWanderpointScreen extends React.Component {
     constructor(props) {
@@ -19,7 +21,11 @@ class AddWanderpointScreen extends React.Component {
             UNESCO: false,
             isFavorite: false,
             description: 'Add a description...',
-            category: 'None'
+            category: 'None',
+            region: {
+                latitude: 37.78825,
+                longitude: -122.4324
+            }
         };
       }
     
@@ -77,7 +83,7 @@ class AddWanderpointScreen extends React.Component {
                     style={styles.inputField}
                     clearTextOnFocus={true}
                     onChangeText={(latitude) => this.setState({latitude})}
-                    value={this.state.latitude}
+                    value={this.state.region.latitude.toString()}
                 />
             </View>
             <View style={styles.container}>
@@ -85,7 +91,7 @@ class AddWanderpointScreen extends React.Component {
                     style={styles.inputField}
                     clearTextOnFocus={true}
                     onChangeText={(longitude) => this.setState({longitude})}
-                    value={this.state.longitude}
+                    value={this.state.region.longitude.toString()}
                 />
             </View>
             <View style={styles.container}>
@@ -96,6 +102,13 @@ class AddWanderpointScreen extends React.Component {
                     value={this.state.country   }
                 />
             </View>
+            <MapView
+                style={styles.addImage}
+                onRegionChange={(region) => this.setState({ region: region})}>
+                <MapView.Marker
+                    coordinate={{latitude: this.state.region.latitude, longitude: this.state.region.longitude}}
+                />
+            </MapView>
         </ScrollView>
         );
     }
@@ -143,13 +156,13 @@ const styles = StyleSheet.create({
     },
     imageText: {
         textAlign: "right",
-    },
-    imageWrapper: {
-        flex: 1,
-        alignItems: 'stretch'
-      },
-      image: {
-        flex: 1
+    }
+    ,markerFixed: {
+        left: '50%',
+        marginLeft: -24,
+        marginTop: -48,
+        position: 'absolute',
+        top: '50%'
       }
 
 });
