@@ -27,7 +27,7 @@ class AddWanderpointScreen extends React.Component {
                 longitude: -122.4324
             }
         };
-      }
+    }
     
     _pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -39,8 +39,7 @@ class AddWanderpointScreen extends React.Component {
     if (!result.cancelled) {
         this.setState({ image: result.uri });
     }
-    };
-
+};
 
     render() {
         return (
