@@ -7,6 +7,7 @@ import WanderlistScreen from '../screens/wanderlistScreen';
 import WanderpointScreen from '../screens/wanderpointScreen';
 import ItineraryScreen from '../screens/itineraryScreen';
 import ProfileScreen from '../screens/profileScreen';
+import AddWanderpointScreen from '../screens/addWanderpointScreen';
 
 const icons = {
 	filled: {
@@ -28,12 +29,14 @@ const ExploreStack = createStackNavigator({
 })
 
 const MapStack = createStackNavigator({
-	Main: MapScreen
+	Main: MapScreen,
+	Wanderpoint: WanderpointScreen
 })
 
 const WanderlistStack = createStackNavigator({
 	Main: WanderlistScreen,
-	Wanderpoint: WanderpointScreen
+	Wanderpoint: WanderpointScreen,
+	AddWanderPoint: AddWanderpointScreen
 })
 
 const ItineraryStack = createStackNavigator({
