@@ -15,6 +15,7 @@ export default class TagsComponent extends React.Component {
                 horizontal = {true}
                 style={styles.tags}
                 enableEmptySections={true}
+                removeClippedSubviews={false}
                 dataSource={ds.cloneWithRows(this.props.selectedPoint.tags)}
                 renderRow={(rowData) => 
                     <View style={styles.tag}>
