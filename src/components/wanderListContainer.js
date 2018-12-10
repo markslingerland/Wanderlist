@@ -137,16 +137,14 @@ const styles = StyleSheet.create({
     list: {
         backgroundColor: '#fff',
         width: '100%',
-        height: '100%',
+        height: '92%',
         marginTop: '-3%'
     },
     searchBar: {
         width: '100%',
     },
     item: {
-        marginLeft: '3%',
-        marginRight: '3%',
-        marginTop: '3%',
+        margin: '3%',        
         height: 250,
         borderRadius: 10,
         shadowOffset:{  width: 0,  height: 3,  },
@@ -159,12 +157,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255,255,255,0.6)',
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
-        padding:10,
+        padding: 10,
         position: 'absolute',
-        top: 0,
-        left: 0, 
         width: '100%',
-        flex: 1 ,    
     },
     title: {
         fontSize: 20,
@@ -175,13 +170,16 @@ const styles = StyleSheet.create({
     backgroundImage: {
         flex: 1,
         resizeMode: "cover",
-        marginTop: '3%',
+        marginTop: '1.5%',
         position: 'absolute',
         top: 0,
         left: 0,   
+        right: 0,
+        bottom: 0,
         width: '100%',
-        height: 250,
-        top: '-5.5%',
+        top: -6,
+        alignItems: 'stretch',
+
         borderRadius: 10,
         }
 });
