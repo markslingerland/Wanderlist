@@ -6,24 +6,23 @@ import { Ionicons } from '@expo/vector-icons';
 import ModalFilter from '../components/modalFilter';
 
 export default class WanderlistScreen extends React.Component {
-    onPress(){
-        this.props.navigation.navigate('AddWanderPoint')
-    }
-    
-    static navigationOptions = {
+
+    static navigationOptions = ({navigation}) => {
+        return{ 
         // headerTitle instead of title
         headerLeft: <TouchableOpacity style={{marginLeft: 13}}>
                             <ModalFilter/>
                     </TouchableOpacity>,
         headerTitle: <LogoTitle />,
-        headerRight: <TouchableOpacity style={{marginRight: 15}}  onPress={() => this.onPress()}>
-                            <View>
+        headerRight: <TouchableOpacity style={{marginRight: 15}}  onPress={() => navigation.navigate('AddWanderpoint')}>
+                        <View>
                             <Ionicons
                                 name="md-add"
                                 size={30}
                                 color="#293241"/>
-                            </View>
+                        </View>
                     </TouchableOpacity>,
+        }
     };
 
     
