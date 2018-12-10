@@ -103,8 +103,26 @@ class AddWanderpointScreen extends React.Component {
                                 {label:'Entertainment',
                                 value: 'Entertainment'
                                 },
+                                {label:'Religious',
+                                value: 'Religious '
+                                },
+                                {label:'View',
+                                value: 'View '
+                                },
+                                {label:'Hotel',
+                                value: 'Hotel '
+                                },
+                                {label:'Relax',
+                                value: 'Relax '
+                                },
                                 {label:'Food',
                                 value: 'Food '
+                                },
+                                {label:'Drinks',
+                                value: 'Drinks '
+                                },
+                                {label:'Shopping',
+                                value: 'Shopping '
                                 }]}
                         placeholder={{}}
                         onValueChange={(value) => {
@@ -112,7 +130,7 @@ class AddWanderpointScreen extends React.Component {
                             category: value
                         })  
                         }}>
-                        <Text> Category </Text>
+                        <Text> {this.state.category == '' ? "Category" : this.state.category} </Text>
                     </RNPickerSelect>
                 </View>
             </View>
