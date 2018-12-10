@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TextInput } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TextInput, TouchableWithoutFeedback, Image } from 'react-native';
+import { Permissions, ImagePicker } from 'expo'
 import { FontAwesome } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import { listCategories, getCategoryColor } from '../reducers/categoryReducer';
@@ -9,6 +10,7 @@ class AddWanderpointScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
+            image: '',
             name: 'Name',
             location: 'Location',
             latitude: 'Latitude',
@@ -20,20 +22,39 @@ class AddWanderpointScreen extends React.Component {
             category: 'None'
         };
       }
+    
+    _pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+        allowsEditing: true,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+        this.setState({ image: result.uri });
+    }
+    };
 
 
     render() {
         return (
         <ScrollView style={styles.main}>
             <View style={styles.container}>
-                <View style={styles.addImage}>
-                    <Text style={styles.imageText}> Add Image </Text>
-                    <FontAwesome
-                    name='plus'
-                    size={20}
-                    
-                    />
-                </View>
+                <TouchableWithoutFeedback onPress={() => this._pickImage()}>
+                    <View style={styles.addImage}>
+                        { this.state.image == '' ? 
+                        <View style={{alignItems: 'center'}}>>
+                            <Text style={styles.imageText}> Add Image </Text>
+                            <FontAwesome
+                            name='plus'
+                            size={20} />
+                        </View> : 
+                        <View style={{height: "100%", width: "100%", alignItems: "stretch"}}>
+                            <Image style={{flex:1, height: "100%", width: "100%", resizeMode: "cover"}} source={{uri: this.state.image}}/>
+                        </View>}
+                        
+                    </View>
+                </TouchableWithoutFeedback>
             </View>
             <View style={styles.container}>
                 <TextInput
@@ -122,6 +143,13 @@ const styles = StyleSheet.create({
     },
     imageText: {
         textAlign: "right",
-    }
+    },
+    imageWrapper: {
+        flex: 1,
+        alignItems: 'stretch'
+      },
+      image: {
+        flex: 1
+      }
 
 });
