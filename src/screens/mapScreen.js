@@ -5,6 +5,7 @@ import { MapView } from 'expo';
 import LogoTitle from '../components/logoTitle'
 import { listPoints, selectPoint } from '../reducers/pointReducer'
 import FavoriteComponent from '../components/Core/favoriteComponent'
+import { Ionicons } from '@expo/vector-icons';
 
 class MapScreen extends React.Component {
     static navigationOptions = {
@@ -18,7 +19,6 @@ class MapScreen extends React.Component {
 
     onPress(point){
         this.props.selectPoint(point);
-        //this.props.addTagToPoint(point.id, "Testtag")
         this.props.navigation.navigate('Wanderpoint');
     }
     
@@ -27,6 +27,10 @@ class MapScreen extends React.Component {
         key={point.key}
         coordinate={{latitude: point.latitude , longitude: point.longitude}}
     >
+    <Ionicons
+        name="ios-pin"
+        size={40}
+        color="#293241"/>
     <MapView.Callout tooltip>
         <TouchableWithoutFeedback onPress={() => this.onPress(point)}>
         <View style={styles.item} >
