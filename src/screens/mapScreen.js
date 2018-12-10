@@ -27,12 +27,9 @@ class MapScreen extends React.Component {
     renderMarker(point){ 
     return <MapView.Marker
         key={point.key}
+        pinColor={"#ddd"}
         coordinate={{latitude: point.latitude , longitude: point.longitude}}
     >
-    <Ionicons
-        name="ios-pin"
-        size={40}
-        color="#293241"/>
     <MapView.Callout tooltip>
         <TouchableWithoutFeedback onPress={() => this.onPress(point)}>
         <View style={styles.item} >
