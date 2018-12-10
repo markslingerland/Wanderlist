@@ -144,7 +144,9 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     item: {
-        margin: '3%',        
+        margin: '2%',  
+        marginLeft: '3%',
+        marginRight: '3%',      
         height: 250,
         borderRadius: 10,
         shadowOffset:{  width: 0,  height: 3,  },
