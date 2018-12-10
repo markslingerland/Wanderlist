@@ -1,18 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Image, } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, } from 'react-native';
 import TagsComponent from '../components/Core/tagsComponent'
+import AddTagComponent from '../components/Core/addTagComponent'
+import ToggleIsVisited from '../components/Core/toggleIsVisited'
 
 
 export default class WanderPointContainer extends React.Component {
+
     render() {
         return (
         <View style = {styles.inner}>
             <ScrollView>
-                <Text style = {styles.text}> {this.props.selectedPoint.description}</Text>
+                <AddTagComponent selectedPoint={this.props.selectedPoint}/>
                 <View style={styles.tagContainer} >
                     <TagsComponent selectedPoint = {this.props.selectedPoint} />
                 </View>
-           </ScrollView>
+                <Text style = {styles.text}> {this.props.selectedPoint.description}</Text>
+            </ScrollView>
+            {/* <ToggleIsVisited selectedPoint={this.props.selectedPoint}/> */}
         </View>
         );
     }
@@ -21,7 +26,7 @@ export default class WanderPointContainer extends React.Component {
 const styles = StyleSheet.create({
     inner: {
         width: '80%',
-        height: '30%',
+        height: '50%',
         marginBottom:'10%',
         paddingTop:'5%',
         paddingLeft:'5%',
@@ -30,9 +35,18 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgb(255, 255, 255)'
     },
     text: {
-        textAlign:'center'
+        textAlign:'center',
     },
     tagContainer: {
-        marginTop: '1%'
+        marginBottom: '1%'
+    },
+    isVisited: {
+        flexDirection: 'row',
+    },
+    isVisitedText: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
