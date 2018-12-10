@@ -6,9 +6,9 @@ export const SELECT_POINT = "Wanderlist/points/SELECT_POINT";
 export const SET_VISIBILITY_CATEGORY_FILTER = "Wanderlist/points/SET_VISIBILITY_CATEGORY_FILTER";
 export const SET_VISIBILITY_TAG_FILTER = "Wanderlist/points/SET_VISIBILITY_TAG_FILTER";
 export const ADD_TAG_TO_POINT = "Wanderlist/points/ADD_TO_TAGS_POINT";
-export const SET_SEARCH_FILTER = "Wanderlist/points/SET_SEARCH_FILTER"
+export const SET_SEARCH_FILTER = "Wanderlist/points/SET_SEARCH_FILTER";
 
-export default function points(state = {categoryFilter: [], tagFilter:[], points: [], visiblePoints: [], filterKeyword: ""}, action) {
+export default function points(state = {categoryFilter: [], tagFilter:[], points: [], visiblePoints: [], tags:[], filterKeyword: ""}, action) {
   switch (action.type) {
     case GET_POINTS:
       return { ...state, loading: true };
@@ -69,7 +69,7 @@ export function addTagToPoint(id, tag){
 
 export function filterPoints(filterKeyword){
   return ({type: SET_SEARCH_FILTER, filterKeyword: filterKeyword})
-} 
+}
 
 export function listPoints() {
   response = [
