@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TextInput, TouchableWithoutFeedback, Image, Switch, Button } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TextInput, TouchableWithoutFeedback, Image, Switch, Button, TouchableOpacity } from 'react-native';
 import { Permissions, ImagePicker } from 'expo'
 import { FontAwesome } from '@expo/vector-icons';
 import { connect } from 'react-redux';
@@ -7,6 +7,8 @@ import { listCategories, getCategoryColor } from '../reducers/categoryReducer';
 import { addWanderpoint } from '../reducers/pointReducer';
 import RNPickerSelect from 'react-native-picker-select';;
 import { MapView } from 'expo';
+import { Ionicons } from '@expo/vector-icons';
+
 
 
 class AddWanderpointScreen extends React.Component {
@@ -27,6 +29,27 @@ class AddWanderpointScreen extends React.Component {
             image: ''
         };
     }
+
+    componentDidMount() {
+        this.props.navigation.setParams({ generatePoint: () => this.generatePoint() })
+    }
+
+    static navigationOptions = ({navigation}) => {
+        return{ 
+        // headerTitle instead of title
+        headerTitle: "Add wanderpoint",
+        headerRight: <TouchableOpacity style={{marginRight: 15}}  onPress={() => navigation.state.params.generatePoint()}>
+                        <View>
+                            <Ionicons
+                                name="ios-checkmark-circle-outline"
+                                size={30}
+                                color="#293241"/>
+                        </View>
+                    </TouchableOpacity>,
+        }
+    };
+
+    
     
     _pickImage = async () => {
         await Permissions.askAsync(Permissions.CAMERA);
@@ -43,8 +66,8 @@ class AddWanderpointScreen extends React.Component {
 };
 
 
-    generatePoint = (x) => {
-        this.props.addWanderpoint(x);
+    generatePoint = () => {
+        this.props.addWanderpoint(this.state);
         this.props.navigation.pop();
     }
 
