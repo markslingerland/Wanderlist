@@ -6,7 +6,7 @@ export default class ItineraryScreen extends React.Component {
     render() {
         return (
         <View style={styles.container}>
-            <Text style={{textAlign: 'center'}}><Text style={{fontWeight: 'bold'}}>Wanderlist v0.0.1</Text>{'\n\n'}by:{'\n\n'}Roman Reichardt{'\n'}Mark Slingerland{'\n'}Alex de Jonge{'\n'}Wessel Meijer</Text>
+            <Text style={{textAlign: 'center'}}><Text style={{fontWeight: 'bold'}}>Wanderlist v0.0.1</Text>{'\n\n'}by:{'\n\n'}Roman Reichardt{'\n'}Mark Slingerland{'\n'}Alexandra de Jonge{'\n'}Wessel Meijer</Text>
         </View>
         );
     }

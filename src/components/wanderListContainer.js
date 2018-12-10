@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { SearchBar } from 'react-native-elements';
-import { StyleSheet, Text, View, ListView, Image, TouchableWithoutFeedback} from 'react-native';
-import { listPoints, selectPoint, addTagToPoint, filterPoints } from '../reducers/pointReducer';
+import { StyleSheet, Text, View, ListView, Image, TouchableWithoutFeedback, Alert} from 'react-native';
+import { listPoints, selectPoint, addTagToPoint, filterPoints, deleteWanderpoint } from '../reducers/pointReducer';
 import { listCategories, getCategoryColor } from '../reducers/categoryReducer';
 import FavoriteComponent from '../components/Core/favoriteComponent'
 
@@ -30,9 +30,19 @@ class WanderlistContainer extends React.Component {
 
     onPress(point){
         this.props.selectPoint(point);
-        //this.props.addTagToPoint(point.id, "Testtag")
         this.props.navigation.navigate('Wanderpoint');
     }
+
+    onLongPress(point){
+        Alert.alert(
+            'Delete Point',
+            'Are you sure you want to delete: ' + point.title,
+            [
+              {text: 'Cancel', onPress: () => null, style: 'cancel'},
+              {text: 'OK', onPress: () => this.props.deleteWanderpoint(point)},
+            ],
+            { cancelable: false }
+          )    }
 
     render() {
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -53,7 +63,8 @@ class WanderlistContainer extends React.Component {
             dataSource={ds.cloneWithRows(this.props.points)}
             renderRow={(rowData) => 
                 <TouchableWithoutFeedback
-                onPress={() => this.onPress(rowData)}>
+                onPress={() => this.onPress(rowData)}
+                onLongPress={() => this.onLongPress(rowData)}>
                 <View 
                 style={styles.item} >
                     <Image
@@ -128,7 +139,8 @@ const mapDispatchToProps = {
     addTagToPoint,
     filterPoints,
     listCategories,
-    getCategoryColor
+    getCategoryColor,
+    deleteWanderpoint
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(WanderlistContainer)

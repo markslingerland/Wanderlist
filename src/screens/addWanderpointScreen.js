@@ -1,14 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TextInput, Switch, Button, Picker } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TextInput, TouchableWithoutFeedback, Image, Switch } from 'react-native';
+import { Permissions, ImagePicker } from 'expo'
 import { FontAwesome } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import { listCategories, getCategoryColor } from '../reducers/categoryReducer';
 import { addWanderpoint } from '../reducers/pointReducer';
 import RNPickerSelect from 'react-native-picker-select';;
+import { MapView } from 'expo';
 
-function generateWanderPoint(){
-    
-}
 
 class AddWanderpointScreen extends React.Component {
     constructor(props) {
@@ -16,30 +15,51 @@ class AddWanderpointScreen extends React.Component {
         this.state = { 
             name: '',
             area: '',
-            latitude: '',
-            longitude: '',
+            latitude: 0,
+            longitude: 0,
             country: '',
             UNESCO: false,
             isFavorite: false,
             description: '',
             tags: [],
-            category: ''
+            category: '',
+            image: ''
         };
-      }
+    }
+    
+    _pickImage = async () => {
+        await Permissions.askAsync(Permissions.CAMERA);
 
+        let result = await ImagePicker.launchImageLibraryAsync({
+        allowsEditing: true,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+        this.setState({ image: result.uri });
+    }
+};
 
     render() {
         return (
         <ScrollView style={styles.main}>
             <View style={styles.container}>
-                <View style={styles.addImage}>
-                    <Text style={styles.imageText}> Add Image </Text>
-                    <FontAwesome
-                    name='plus'
-                    size={20}
-                    
-                    />
-                </View>
+                <TouchableWithoutFeedback onPress={() => this._pickImage()}>
+                    <View style={styles.addImage}>
+                        { this.state.image == '' ? 
+                        <View style={{alignItems: 'center'}}>>
+                            <Text style={styles.imageText}> Add Image </Text>
+                            <FontAwesome
+                            name='plus'
+                            size={20} />
+                        </View> : 
+                        <View style={{height: "100%", width: "100%", alignItems: "stretch"}}>
+                            <Image style={{flex:1, height: "100%", width: "100%", resizeMode: "cover"}} source={{uri: this.state.image}}/>
+                        </View>}
+                        
+                    </View>
+                </TouchableWithoutFeedback>
             </View>
             <View style={styles.container}>
                 <TextInput
@@ -55,30 +75,6 @@ class AddWanderpointScreen extends React.Component {
                     clearTextOnFocus={true}
                     onChangeText={(value) => this.setState({area: value})}
                     placeholder={"Area"}
-                />
-            </View>
-            <View style={styles.container}>
-                <TextInput
-                    style={styles.inputField}
-                    clearTextOnFocus={true}
-                    onChangeText={(value) => this.setState({latitude: value})}
-                    placeholder={"Latitude"}
-                />
-            </View>
-            <View style={styles.container}>
-                <TextInput
-                    style={styles.inputField}
-                    clearTextOnFocus={true}
-                    onChangeText={(value) => this.setState({longitude: value})}
-                    placeholder={"Longitude"}
-                />
-            </View>
-            <View style={styles.container}>
-                <TextInput
-                    style={styles.inputField}
-                    clearTextOnFocus={true}
-                    onChangeText={(value) => this.setState({country: value})}
-                    placeholder={"Country"}
                 />
             </View>
             <View style={styles.container}>
@@ -148,6 +144,13 @@ class AddWanderpointScreen extends React.Component {
                     onPress={() => }
                 />
             </View> */}
+            <MapView
+                style={styles.addImage}
+                onRegionChange={(region) => this.setState({ latitude: region.latitude, longitude: region.longitude})}>
+                <MapView.Marker
+                    coordinate={{latitude: this.state.latitude, longitude: this.state.longitude}}
+                />
+            </MapView>
         </ScrollView>
         );
     }
