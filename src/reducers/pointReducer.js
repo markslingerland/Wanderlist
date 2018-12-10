@@ -70,7 +70,7 @@ export default function points(state = {categoryFilter: [], tagFilter:[], points
       tagArray.push(action.filter)
       return {...state, categoryFilter: tagArray}    
     case ADD_WANDERPOINT:
-      return {...state, points: [...state.points, action.point]}
+      return {...state, points: state.points.concat(action.point)}
     case DELETE_WANDERPOINT:
       state.points.splice(state.points.map(e => e.id).indexOf(action.point.id), 1)
       return {...state, points: state.points}
@@ -118,7 +118,7 @@ export function toggleFilter(filter, type){
 }
 
 export function addWanderpoint(point){
-  return ({type: ADD_WANDERPOINT, point: point})
+  return ({type: ADD_WANDERPOINT, point: point })
 }
 
 export function deleteWanderpoint(point){

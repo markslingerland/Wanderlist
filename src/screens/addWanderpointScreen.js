@@ -42,6 +42,12 @@ class AddWanderpointScreen extends React.Component {
     }
 };
 
+
+    generatePoint = (x) => {
+        this.props.addWanderpoint(x);
+        this.props.navigation.pop();
+    }
+
     render() {
         return (
         <ScrollView style={styles.main}>
@@ -181,7 +187,7 @@ class AddWanderpointScreen extends React.Component {
             <View style={styles.buttonContainerWrapper}>         
                 <View style={styles.buttonContainer}>
                     <Button
-                        onPress={() => generatePoint(this.state)}
+                        onPress={() => this.generatePoint(this.state)}
                         title='Add WanderPoint'
                     />
                 </View> 
@@ -189,11 +195,6 @@ class AddWanderpointScreen extends React.Component {
         </ScrollView>
         );
     }
-}
-
-function generatePoint(x){
-    console.log(x)
-    addWanderpoint(x)
 }
 
 const mapDispatchToProps = {
