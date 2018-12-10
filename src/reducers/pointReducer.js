@@ -140,6 +140,8 @@ export function listPoints() {
     {"id": 12,"country":"Japan", "title":"Capsule Hotel", "isVisited":false, "image":"https://i.dailymail.co.uk/i/pix/2014/07/20/article-0-1FD0F2B400000578-877_964x635.jpg", "area":"Tokyo", "isFavorite": false, "latitude":35.6805631,  "longitude":139.7036636, "UNESCO":false, "tags":["Sleep","Stay"], "category":"Hotel","description":"This capsule hotel, located near Akihabara in Tokyo, is not just convenient but also very comfortable. It offers a cheap stay for travelers on a budget and are able to be visted 24 hours, a commodity that is not often seen in hotels in Japan."},
     {"id": 13,"country":"Japan", "title":"Matsusaka Beef", "isVisited":false, "image":"http://www.matsusaka-projects.com/english/cms/wp-content/themes/mp_en/images/restaurant/dotonbori/menu/i0.jpg", "area":"Mie", "isFavorite": false, "latitude":34.5773156,  "longitude":136.5289148, "UNESCO":false, "tags":["Matsusaka","Wagyu","High-class","Expensive"], "category":"Food","description":"Most high-end beef available in Japan. The restaurant of Wadakin in Matsusaka owns the farm where cows are luxuriously treated."}
     ]
+
+    
   return ({ type: GET_POINTS_SUCCESS, data : JSON.parse(JSON.stringify(response))
   })
 }

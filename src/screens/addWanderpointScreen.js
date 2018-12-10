@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TextInput, TouchableWithoutFeedback, Image, Switch } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TextInput, TouchableWithoutFeedback, Image, Switch, Button } from 'react-native';
 import { Permissions, ImagePicker } from 'expo'
 import { FontAwesome } from '@expo/vector-icons';
 import { connect } from 'react-redux';
@@ -13,13 +13,14 @@ class AddWanderpointScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            name: '',
+            title: '',
             area: '',
             latitude: 0,
             longitude: 0,
             country: '',
             UNESCO: false,
             isFavorite: false,
+            isVisited: false,
             description: '',
             tags: [],
             category: '',
@@ -65,8 +66,16 @@ class AddWanderpointScreen extends React.Component {
                 <TextInput
                     style={styles.inputField}
                     clearTextOnFocus={true}
-                    onChangeText={(name) => this.setState({name})}
+                    onChangeText={(value) => this.setState({title: value})}
                     placeholder={"Name"}
+                />
+            </View>
+            <View style={styles.container}>
+                <TextInput
+                    style={styles.inputField}
+                    clearTextOnFocus={true}
+                    onChangeText={(value) => this.setState({country: value})}
+                    placeholder={"Country"}
                 />
             </View>
             <View style={styles.container}>
@@ -135,15 +144,15 @@ class AddWanderpointScreen extends React.Component {
                     value={this.state.isFavorite}
                 />
             </View>
-            
-            
-            
-{/*             
-            <View style={styles.buttonContainer}>
-                <Button
-                    onPress={() => }
+            <View style={styles.switchContainer}>
+                <Text style={styles.switchTag}>
+                    Visited   :
+                </Text>
+                <Switch
+                    onValueChange={(value) => this.setState({isVisited: value})}
+                    value={this.state.isVisited}
                 />
-            </View> */}
+            </View>
             <MapView
                 style={styles.addImage}
                 onRegionChange={(region) => this.setState({ latitude: region.latitude, longitude: region.longitude})}>
@@ -151,12 +160,23 @@ class AddWanderpointScreen extends React.Component {
                     coordinate={{latitude: this.state.latitude, longitude: this.state.longitude}}
                 />
             </MapView>
+            <View style={styles.buttonContainerWrapper}>         
+                <View style={styles.buttonContainer}>
+                    <Button
+                        onPress={() => generatePoint(this.state)}
+                        title='Add WanderPoint'
+                    />
+                </View> 
+            </View>   
         </ScrollView>
         );
     }
 }
 
-
+function generatePoint(x){
+    console.log(x)
+    addWanderpoint(x)
+}
 
 const mapDispatchToProps = {
     addWanderpoint,
@@ -232,5 +252,15 @@ const styles = StyleSheet.create({
         backgroundColor: "#f2f2f2",
         paddingLeft: 15,
         paddingTop: 15,
+    },
+    buttonContainer: {
+
+        width: '50%',
+        backgroundColor: '#EE6C4D',
+        borderRadius: 10,
+    },
+    buttonContainerWrapper: {
+        alignContent: 'center',
+        justifyContent: 'center',
     }
 });
