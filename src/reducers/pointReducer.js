@@ -10,7 +10,7 @@ export const SET_SEARCH_FILTER = "Wanderlist/points/SET_SEARCH_FILTER";
 export const UPDATE_CATEGORY_FILTER = "Wanderlist/points/UPDATE_CATEGORY_FILTER"
 export const UPDATE_TAG_FILTER = "Wanderlist/points/UPDATE_TAG_FILTER"
 
-export default function points(state = {categoryFilter: [], tagFilter:[], points: [], visiblePoints: [], filterKeyword: ""}, action) {
+export default function points(state = {categoryFilter: [], tagFilter:[], points: [], visiblePoints: [], tags:[], filterKeyword: ""}, action) {
   switch (action.type) {
     case GET_POINTS:
       return { ...state, loading: true };
@@ -87,7 +87,7 @@ export function addTagToPoint(id, tag){
 
 export function filterPoints(filterKeyword){
   return ({type: SET_SEARCH_FILTER, filterKeyword: filterKeyword})
-} 
+}
 
 export function toggleFilter(filter, type){
   if(type === "category"){
