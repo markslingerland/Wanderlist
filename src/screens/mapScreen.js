@@ -14,9 +14,9 @@ class MapScreen extends React.Component {
         headerTitle: <LogoTitle />
     };
 
-    componentDidMount() {
-        this.props.listCategories();
+    componentWillMount() {
         this.props.listPoints();
+        this.props.listCategories();
       }
 
     onPress(point){
@@ -24,10 +24,10 @@ class MapScreen extends React.Component {
         this.props.navigation.navigate('Wanderpoint');
     }
     
-    renderMarker(point){ 
+    renderMarker(point){
     return <MapView.Marker
         key={point.key}
-        pinColor={"#ddd"}
+        pinColor={this.props.categories.filter(category => category.name == point.category)[0].color}
         coordinate={{latitude: point.latitude , longitude: point.longitude}}
     >
     <MapView.Callout tooltip>

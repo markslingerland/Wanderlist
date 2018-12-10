@@ -7,7 +7,7 @@ import RoundCheckbox from 'rn-round-checkbox';
 
 class RowItem extends React.Component {
     componentDidMount(){
-        this.props.listCategories();        
+     
     }
         
     render() {
