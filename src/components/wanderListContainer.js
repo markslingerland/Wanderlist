@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { SearchBar } from 'react-native-elements';
 import { StyleSheet, Text, View, ListView, Image, TouchableWithoutFeedback} from 'react-native';
-import { listPoints, selectPoint, addTagToPoint, filterPoints, listAllTags } from '../reducers/pointReducer'
+import { listPoints, selectPoint, addTagToPoint, filterPoints } from '../reducers/pointReducer';
+import { listCategories, getCategoryColor } from '../reducers/categoryReducer';
 import FavoriteComponent from '../components/Core/favoriteComponent'
 
 class WanderlistContainer extends React.Component {
@@ -15,6 +16,8 @@ class WanderlistContainer extends React.Component {
 
     componentDidMount() {
         this.props.listPoints();
+        console.log("AAAAAAAAAAAAAAAAAAAA");
+        this.props.listCategories();
     }
 
     handleQueryChange(query){  
@@ -74,6 +77,7 @@ class WanderlistContainer extends React.Component {
 
 const mapStateToProps = state => {
     const { points } = state.points;
+    console.log(state.categories);
     let resultPoints = points.map(point => ({ key: point.id, ...point }));
 
     //CATEGORY+TAG FILTERING
@@ -81,7 +85,7 @@ const mapStateToProps = state => {
         let resultPoints = [];
 
         if (state.points.filterKeyword.length > 0){
-            let filteredPoints = points.filter(item => item.title.toLowerCase().includes(state.points.filterKeyword) || item.description.toLowerCase().includes(state.points.filterKeyword) || item.area.toLowerCase().includes(state.points.filterKeyword) || item.country.toLowerCase().includes(state.points.filterKeyword));
+            let filteredPoints = points.filter(item => item.title.toLowerCase().includes(state.points.filterKeyword.toLowerCase()) || item.description.toLowerCase().includes(state.points.filterKeyword.toLowerCase()) || item.area.toLowerCase().includes(state.points.filterKeyword.toLowerCase()) || item.country.toLowerCase().includes(state.points.filterKeyword.toLowerCase()));
             let storedPoints = filteredPoints.map(point => ({ key: point.id, ...point }));
             resultPoints = resultPoints.concat(storedPoints);
         }
@@ -106,12 +110,14 @@ const mapStateToProps = state => {
         resultPoints = [...new Set(resultPoints)]
 
         return {
-            points: resultPoints
+            points: resultPoints,
+            
         };
     }
 
     return {
-        points: resultPoints
+        points: resultPoints,
+        
     };
     //ELSE
     
@@ -121,7 +127,9 @@ const mapDispatchToProps = {
     listPoints,
     selectPoint,
     addTagToPoint,
-    filterPoints
+    filterPoints,
+    listCategories,
+    getCategoryColor
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(WanderlistContainer)

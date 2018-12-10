@@ -1,16 +1,21 @@
 import React from 'react';
 import { View, StyleSheet, SectionList, Text, TouchableWithoutFeedback} from 'react-native';
 import { toggleFilter } from '../reducers/pointReducer'
+import { listCategories, getCategoryColor } from '../reducers/categoryReducer';
 import { connect } from 'react-redux';
 import RoundCheckbox from 'rn-round-checkbox';
 
 class RowItem extends React.Component {
+    componentDidMount(){
+        this.props.listCategories();        
+    }
+        
     render() {
       return (
         <SectionList style = {styles.container}
             renderItem={({item, index, section}) => 
             <TouchableWithoutFeedback>
-                <View style={styles.item_container}>
+                <View style={styles.item_container} backgroundColor={item.color}>
                     <RoundCheckbox
                         size={24}
                         checked={item.selected}
@@ -41,8 +46,12 @@ const mapStateToProps = state => {
     const { points } = state.points;
     const selectedCategories = state.points.categoryFilter
     const selectedTags = state.points.tagFilter;
+    const categoryList = state.categories.categories;
+
+    console.log(categoryList);
 
     let uniqueCategories = [...new Set(points.map(point => point.category))]
+
     let categories = uniqueCategories.map(category => ({"name" : category, "selected" : selectedCategories.includes(category), "type" : "category"}))
     let allTags = [];
     points.forEach(function(point) {
@@ -53,14 +62,17 @@ const mapStateToProps = state => {
 
     console.log(tags)
     return {
-        categories: categories,
-        tags: tags
+        tags: tags,
+        categories: categories
     }
 
 };
 
 const mapDispatchToProps = {
-    toggleFilter
+    getCategoryColor,
+    toggleFilter,
+    listCategories,
+    
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RowItem)
