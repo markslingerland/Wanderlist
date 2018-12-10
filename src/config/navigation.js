@@ -36,7 +36,7 @@ const MapStack = createStackNavigator({
 const WanderlistStack = createStackNavigator({
 	Main: WanderlistScreen,
 	Wanderpoint: WanderpointScreen,
-	AddWanderPoint: AddWanderpointScreen
+	AddWanderpoint: AddWanderpointScreen
 })
 
 const ItineraryStack = createStackNavigator({
