@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { SearchBar } from 'react-native-elements';
 import { StyleSheet, Text, View, ListView, Image, TouchableWithoutFeedback} from 'react-native';
-import { listPoints, selectPoint, addTagToPoint, filterPoints } from '../reducers/pointReducer'
+import { listPoints, selectPoint, addTagToPoint, filterPoints, listAllTags } from '../reducers/pointReducer'
 import FavoriteComponent from '../components/Core/favoriteComponent'
 
 class WanderlistContainer extends React.Component {
@@ -21,9 +21,7 @@ class WanderlistContainer extends React.Component {
         console.log(this.props)
         this.setState(state => ({ ...state, query: query || "" }));
         this.props.filterPoints(query);
-
-    }
-       
+    }       
 
     handleSearchCancel = () => this.handleQueryChange("");
 
@@ -80,15 +78,11 @@ const mapStateToProps = state => {
 
     //CATEGORY+TAG FILTERING
     if(state.points.categoryFilter.length > 0 || state.points.tagFilter.length > 0 || state.points.filterKeyword.length > 0){
-        // let categories = [...new Set(points.map(point => point.category))]
-
-        let storedPoints = [];
         let resultPoints = [];
 
         if (state.points.filterKeyword.length > 0){
-            let filteredPoints = points.filter(item => item.title.includes(state.points.filterKeyword) || item.description.includes(state.points.filterKeyword) || item.area.includes(state.points.filterKeyword) || item.country.includes(state.points.filterKeyword));
+            let filteredPoints = points.filter(item => item.title.toLowerCase().includes(state.points.filterKeyword) || item.description.toLowerCase().includes(state.points.filterKeyword) || item.area.toLowerCase().includes(state.points.filterKeyword) || item.country.toLowerCase().includes(state.points.filterKeyword));
             let storedPoints = filteredPoints.map(point => ({ key: point.id, ...point }));
-            console.log("Filtered points: " + filteredPoints)
             resultPoints = resultPoints.concat(storedPoints);
         }
 
@@ -108,6 +102,8 @@ const mapStateToProps = state => {
 
             resultPoints = resultPoints.concat(storedPoints)
         }
+
+        resultPoints = [...new Set(resultPoints)]
 
         return {
             points: resultPoints
@@ -134,11 +130,11 @@ const styles = StyleSheet.create({
     list: {
         backgroundColor: '#fff',
         width: '100%',
+        height: '100%',
         marginTop: '-3%'
     },
     searchBar: {
         width: '100%',
-        marginTop: '6%'
     },
     item: {
         marginLeft: '3%',
@@ -150,7 +146,7 @@ const styles = StyleSheet.create({
         shadowColor: 'black',
         shadowOpacity: 0.4,
         shadowRadius: 4,
-        backgroundColor: 'rgba(45,45,45,0.0)',
+        backgroundColor: 'rgba(35,35,35,0)',
     },
     header: {
         backgroundColor: 'rgba(255,255,255,0.6)',
@@ -177,7 +173,7 @@ const styles = StyleSheet.create({
         top: 0,
         left: 0,   
         width: '100%',
-        height: '130%',
+        height: 250,
         top: '-5.5%',
         borderRadius: 10,
         }

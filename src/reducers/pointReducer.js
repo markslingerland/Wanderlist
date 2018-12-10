@@ -6,9 +6,11 @@ export const SELECT_POINT = "Wanderlist/points/SELECT_POINT";
 export const SET_VISIBILITY_CATEGORY_FILTER = "Wanderlist/points/SET_VISIBILITY_CATEGORY_FILTER";
 export const SET_VISIBILITY_TAG_FILTER = "Wanderlist/points/SET_VISIBILITY_TAG_FILTER";
 export const ADD_TAG_TO_POINT = "Wanderlist/points/ADD_TO_TAGS_POINT";
-export const SET_SEARCH_FILTER = "Wanderlist/points/SET_SEARCH_FILTER"
+export const SET_SEARCH_FILTER = "Wanderlist/points/SET_SEARCH_FILTER";
+export const UPDATE_CATEGORY_FILTER = "Wanderlist/points/UPDATE_CATEGORY_FILTER"
+export const UPDATE_TAG_FILTER = "Wanderlist/points/UPDATE_TAG_FILTER"
 
-export default function points(state = {categoryFilter: [], tagFilter:[], points: [], visiblePoints: [], filterKeyword: ""}, action) {
+export default function points(state = {categoryFilter: [], tagFilter:[], points: [], visiblePoints: [], tags:[], filterKeyword: ""}, action) {
   switch (action.type) {
     case GET_POINTS:
       return { ...state, loading: true };
@@ -42,6 +44,22 @@ export default function points(state = {categoryFilter: [], tagFilter:[], points
           ? {...point, isFavorite: !point.isFavorite}
           : point
       ) } 
+    case UPDATE_CATEGORY_FILTER:
+        let categoryArray = state.categoryFilter;
+        if(state.categoryFilter.indexOf(action.filter) > -1){
+          categoryArray.splice(categoryArray.indexOf(action.filter), 1)
+          return {...state, categoryFilter: categoryArray}
+        }
+        categoryArray.push(action.filter)
+        return {...state, categoryFilter: categoryArray}
+    case UPDATE_TAG_FILTER:
+      let tagArray = state.tagFilter;
+      if(state.tagFilter.indexOf(action.filter) > -1){
+        tagArray.splice(tagArray.indexOf(action.filter), 1)
+        return {...state, tagFilter: tagArray}
+      }
+      tagArray.push(action.filter)
+      return {...state, categoryFilter: tagArray}    
     default:
       return state;
   }
@@ -69,7 +87,18 @@ export function addTagToPoint(id, tag){
 
 export function filterPoints(filterKeyword){
   return ({type: SET_SEARCH_FILTER, filterKeyword: filterKeyword})
-} 
+}
+
+export function toggleFilter(filter, type){
+  if(type === "category"){
+    return ({type: UPDATE_CATEGORY_FILTER, filter: filter })
+  }
+
+  if(type === "tag"){
+    return ({type: UPDATE_TAG_FILTER, filter: filter })
+  }
+  
+}
 
 export function listPoints() {
   response = [
