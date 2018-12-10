@@ -103,7 +103,7 @@ class AddWanderpointScreen extends React.Component {
                             category: value
                         })  
                         }}>
-                        <Text> Category </Text>
+                        <Text> {this.state.category == '' ? "Category" : this.state.category} </Text>
                     </RNPickerSelect>
                 </View>
             </View>
