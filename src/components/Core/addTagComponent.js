@@ -13,14 +13,14 @@ class AddTagComponent extends React.Component {
       render() {
         return (
         <View style={styles.container}>
-          <TextInput
-            style={styles.addTagInput}
-            clearTextOnFocus={true}
-            onSubmitEditing={() => this.props.addTagToPoint(this.props.selectedPoint.id , this.state.text)}
-            onChangeText={(text) => this.setState({text})}
-            value={this.state.text}
-          />
-          </View>
+           <TextInput
+                style={styles.addTagInput}
+                clearTextOnFocus={true}
+                onSubmitEditing={() => this.props.addTagToPoint(this.props.selectedPoint.id , this.state.text)}
+                onChangeText={(text) => this.setState({text})}
+                value={this.state.text}
+           />
+        </View>
         );
       }
     }
@@ -37,14 +37,13 @@ const styles = StyleSheet.create({
         height: 40, 
         borderColor: 'gray', 
         borderWidth: 1,
-        padding: 5,
+        padding: 2,
+        borderColor: '#EE6C4D',
+        borderRadius: 10,
         
     },
     container: {
         width: '100%',
-        position: 'absolute',
-        top: '0%',
-        left: '0%',
         backgroundColor: 'rgba(255,255,255,0.9)',       
     }
 });
