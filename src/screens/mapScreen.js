@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
 import { MapView } from 'expo';
-import LogoTitle from '../components/logoTitle'
-import { listPoints } from '../reducers/pointReducer'
+import LogoTitle from '../components/logoTitle';
+import { listPoints } from '../reducers/pointReducer';
+import { listCategories, getCategoryColor } from '../reducers/categoryReducer';
 
 
 class MapScreen extends React.Component {
@@ -13,8 +14,9 @@ class MapScreen extends React.Component {
     };
 
     componentDidMount() {
-        this.props.listPoints();
-      }
+      this.props.listPoints();
+      this.props.listCategories();
+    }
     
     renderMarker(point){ 
     return <MapView.Marker
@@ -52,7 +54,9 @@ const mapStateToProps = state => {
   };
   
   const mapDispatchToProps = {
-    listPoints
+    listPoints,
+    getCategoryColor,
+    listCategories
   };
   
   export default connect(mapStateToProps, mapDispatchToProps)(MapScreen);
