@@ -26,9 +26,9 @@ export function listCategories() {
   response = [
     {'name':'Nature','color':"#91dd77"},
     {'name':'Religious','color':"#ff4500"},
-    {'name':'View','color':"#d4ebf2"},
+    {'name':'View','color':"#40e0d0"},
     {'name':'Hotel','color':"#800080"},
-    {'name':'Entertainment','color':"#ffc0cb"},
+    {'name':'Entertainment','color':"#ff8da1"},
     {'name':'Relax','color':"#0000cc"},
     {'name':'Food','color':"#8b0000"},
     {'name':'Drinks','color':"#6bbdb7"},
