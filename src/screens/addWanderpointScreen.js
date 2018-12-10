@@ -1,23 +1,29 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TextInput } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TextInput, Switch, Button, Picker } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import { listCategories, getCategoryColor } from '../reducers/categoryReducer';
 import { addWanderpoint } from '../reducers/pointReducer';
+import RNPickerSelect from 'react-native-picker-select';;
+
+function generateWanderPoint(){
+    
+}
 
 class AddWanderpointScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            name: 'Name',
-            location: 'Location',
-            latitude: 'Latitude',
-            longitude: 'longitude',
-            country: 'Country',
+            name: '',
+            area: '',
+            latitude: '',
+            longitude: '',
+            country: '',
             UNESCO: false,
             isFavorite: false,
-            description: 'Add a description...',
-            category: 'None'
+            description: '',
+            tags: [],
+            category: ''
         };
       }
 
@@ -40,45 +46,114 @@ class AddWanderpointScreen extends React.Component {
                     style={styles.inputField}
                     clearTextOnFocus={true}
                     onChangeText={(name) => this.setState({name})}
-                    value={this.state.name}
+                    placeholder={"Name"}
                 />
             </View>
             <View style={styles.container}>
                 <TextInput
                     style={styles.inputField}
                     clearTextOnFocus={true}
-                    onChangeText={(location) => this.setState({location})}
-                    value={this.state.location}
+                    onChangeText={(value) => this.setState({area: value})}
+                    placeholder={"Area"}
                 />
             </View>
             <View style={styles.container}>
                 <TextInput
                     style={styles.inputField}
                     clearTextOnFocus={true}
-                    onChangeText={(latitude) => this.setState({latitude})}
-                    value={this.state.latitude}
+                    onChangeText={(value) => this.setState({latitude: value})}
+                    placeholder={"Latitude"}
                 />
             </View>
             <View style={styles.container}>
                 <TextInput
                     style={styles.inputField}
                     clearTextOnFocus={true}
-                    onChangeText={(longitude) => this.setState({longitude})}
-                    value={this.state.longitude}
+                    onChangeText={(value) => this.setState({longitude: value})}
+                    placeholder={"Longitude"}
                 />
             </View>
             <View style={styles.container}>
                 <TextInput
                     style={styles.inputField}
                     clearTextOnFocus={true}
-                    onChangeText={(country) => this.setState({country})}
-                    value={this.state.country   }
+                    onChangeText={(value) => this.setState({country: value})}
+                    placeholder={"Country"}
                 />
             </View>
+            <View style={styles.container}>
+                <TextInput
+                    style={styles.inputField}
+                    clearTextOnFocus={true}
+                    onSubmitEditing={(value) => this.setState({ tags: this.state.tags.concat(value.nativeEvent.text)})}
+                    placeholder={"Tags"}
+                />
+            </View>
+            <View style={styles.container}>
+                <View style={styles.pickerField}>
+                    <RNPickerSelect 
+                        items={[{label:'Nature',
+                                value: 'Nature'
+                                },
+                                {label:'Entertainment',
+                                value: 'Entertainment'
+                                },
+                                {label:'Food',
+                                value: 'Food '
+                                }]}
+                        placeholder={{}}
+                        onValueChange={(value) => {
+                        this.setState({
+                            category: value
+                        })  
+                        }}>
+                        <Text> Category </Text>
+                    </RNPickerSelect>
+                </View>
+            </View>
+            <View style={styles.container}>
+                <TextInput
+                    style={styles.inputFieldDescription}
+                    clearTextOnFocus={true}
+                    multiline={true}
+                    onChangeText={(value) => this.setState({description: value})}
+                    placeholder={"Add a description.."}
+                />
+            </View>
+            <View style={styles.divider}></View>
+            <View style={styles.switchContainer}>
+                <Text style={styles.switchTag}>
+                    UNESCO: 
+                </Text>
+                <Switch
+                    onValueChange={(value) => this.setState({UNESCO: value})}
+                    value={this.state.UNESCO}
+                />
+            </View>
+            <View style={styles.switchContainer}>
+                <Text style={styles.switchTag}>
+                    Favorite  :
+                </Text>
+                <Switch
+                    onValueChange={(value) => this.setState({isFavorite: value})}
+                    value={this.state.isFavorite}
+                />
+            </View>
+            
+            
+            
+{/*             
+            <View style={styles.buttonContainer}>
+                <Button
+                    onPress={() => }
+                />
+            </View> */}
         </ScrollView>
         );
     }
 }
+
+
 
 const mapDispatchToProps = {
     addWanderpoint,
@@ -96,6 +171,12 @@ const styles = StyleSheet.create({
         borderTopWidth: 1,
         borderTopColor: '#dedede',
     },
+    switchContainer: {
+        backgroundColor: '#f2f2f2',
+        height: 60,    
+        alignItems: 'center',  
+        flexDirection: "row"
+    },
     headerText: {
         fontSize: 18,
         fontWeight: "400",
@@ -105,7 +186,13 @@ const styles = StyleSheet.create({
         height: 60,
         backgroundColor: "#f2f2f2",
         padding: 15,
-
+    },
+    pickerField: {
+        width: '100%',
+        height: 60,
+        backgroundColor: "#f2f2f2",
+        padding: 12,
+        justifyContent: 'center',
     },
     main: {
         backgroundColor: '#fff',
@@ -122,6 +209,25 @@ const styles = StyleSheet.create({
     },
     imageText: {
         textAlign: "right",
+    },
+    divider: {
+        height: 15,
+        backgroundColor: "#fff",
+        borderTopWidth: 1,
+        borderBottomWidth: 1,
+        borderColor: "#DEDEDE"
+    },
+    switchTag: {
+        paddingLeft: 15,
+        paddingRight: "60%",
+        borderBottomWidth: 1,
+        borderColor: '#dedede'
+    },
+    inputFieldDescription: {
+        width: '100%',
+        height: 150 ,
+        backgroundColor: "#f2f2f2",
+        paddingLeft: 15,
+        paddingTop: 15,
     }
-
 });
