@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Modal, Text, TouchableHighlight, View, Alert, StyleSheet} from 'react-native';
+import {Modal, Text, TouchableHighlight, View, Alert, StyleSheet, TouchableOpacity, TouchableWithoutFeedback} from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import RowItem from '../components/rowItem';
 
@@ -23,13 +23,15 @@ export default class ModalFilter extends Component {
           onRequestClose={() => {
             Alert.alert('Modal has been closed.');
           }}>
-          <TouchableHighlight style={styles.modal} onPress={() => {this.setModalVisible(!this.state.modalVisible);}}>
+          <TouchableWithoutFeedback onPress={() => {this.setModalVisible(false)}}>
+          <View style={styles.modal} >
             <View style={styles.outer}>
               <View style = {styles.inner}>
                 <RowItem/>
               </View>
             </View>
-          </TouchableHighlight>
+          </View>
+          </TouchableWithoutFeedback>
         </Modal>
 
         <TouchableHighlight 
@@ -52,16 +54,20 @@ const styles = StyleSheet.create({
       height: "100%"
     },
     outer: {
-      marginTop: "20%",
+      flex: 1,
+      marginTop: '20%',
       marginLeft: "10%",
+      marginBottom: '20%',
+
       width: "80%",
       height: "70%",
+      justifyContent: 'center',
 
-      backgroundColor: "#e7e7e7",
+      backgroundColor: "#fff",
       borderRadius: 10,
       
     },
-    inner: {},
+    inner: { paddingTop: '5%',marginBottom: '-22%'},
     exit: {
       flexDirection: "row",
       justifyContent: "flex-end",
