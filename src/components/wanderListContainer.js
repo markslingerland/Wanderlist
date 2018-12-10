@@ -81,7 +81,7 @@ const mapStateToProps = state => {
         let resultPoints = [];
 
         if (state.points.filterKeyword.length > 0){
-            let filteredPoints = points.filter(item => item.title.toLowerCase().includes(state.points.filterKeyword) || item.description.toLowerCase().includes(state.points.filterKeyword) || item.area.toLowerCase().includes(state.points.filterKeyword) || item.country.toLowerCase().includes(state.points.filterKeyword));
+            let filteredPoints = points.filter(item => item.title.toLowerCase().includes(state.points.filterKeyword.toLowerCase()) || item.description.toLowerCase().includes(state.points.filterKeyword.toLowerCase()) || item.area.toLowerCase().includes(state.points.filterKeyword.toLowerCase()) || item.country.toLowerCase().includes(state.points.filterKeyword.toLowerCase()));
             let storedPoints = filteredPoints.map(point => ({ key: point.id, ...point }));
             resultPoints = resultPoints.concat(storedPoints);
         }
