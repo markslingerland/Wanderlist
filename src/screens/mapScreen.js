@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, Text, View, Image, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { MapView } from 'expo';
-import LogoTitle from '../components/logoTitle'
-import { listPoints, selectPoint } from '../reducers/pointReducer'
-import FavoriteComponent from '../components/Core/favoriteComponent'
-import { Ionicons } from '@expo/vector-icons';
+import LogoTitle from '../components/logoTitle';
+import { listPoints } from '../reducers/pointReducer';
+import { listCategories, getCategoryColor } from '../reducers/categoryReducer';
+
 
 class MapScreen extends React.Component {
     static navigationOptions = {
@@ -14,39 +14,17 @@ class MapScreen extends React.Component {
     };
 
     componentDidMount() {
-        this.props.listPoints();
-      }
-
-    onPress(point){
-        this.props.selectPoint(point);
-        this.props.navigation.navigate('Wanderpoint');
+      this.props.listPoints();
+      this.props.listCategories();
     }
     
     renderMarker(point){ 
     return <MapView.Marker
         key={point.key}
         coordinate={{latitude: point.latitude , longitude: point.longitude}}
-    >
-    <Ionicons
-        name="ios-pin"
-        size={40}
-        color="#293241"/>
-    <MapView.Callout tooltip>
-        <TouchableWithoutFeedback onPress={() => this.onPress(point)}>
-        <View style={styles.item} >
-             <Image
-                style={styles.backgroundImage}
-                source={{ uri: point.image }}
-            />
-            <View style={styles.header}>
-                <Text style={styles.title}>{point.title}</Text>
-                <Text style={styles.subtitle}>{point.area},{point.country}</Text>
-                {(point.isFavorite) ? <FavoriteComponent state={true} itemId={point.id} /> : <FavoriteComponent state={false} itemId={point.id}/> }
-            </View> 
-        </View>
-    </TouchableWithoutFeedback>
-    </MapView.Callout>
-    </MapView.Marker>}  
+        title={point.title}
+        description={`${point.country}, ${point.area}`}
+    />}  
 
     render() {
         return (
@@ -77,7 +55,8 @@ const mapStateToProps = state => {
   
   const mapDispatchToProps = {
     listPoints,
-    selectPoint
+    getCategoryColor,
+    listCategories
   };
   
   export default connect(mapStateToProps, mapDispatchToProps)(MapScreen);
@@ -88,48 +67,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center', 
         alignItems: 'center',
         backgroundColor: '#fff',
-    },
-    item: {
-        // marginLeft: '3%',
-        // marginRight: '3%',
-        // marginTop: '3%',
-        height: 250,
-        width: 370,
-        position: 'relative',
-        borderRadius: 10,
-        shadowOffset:{  width: 0,  height: 3,  },
-        shadowColor: 'black',
-        shadowOpacity: 0.4,
-        shadowRadius: 4,
-        backgroundColor: 'rgba(35,35,35,0)',
-    },
-    header: {
-        backgroundColor: 'rgba(255,255,255,0.6)',
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
-        padding:10,
-        position: 'absolute',
-        top: 0,
-        left: 0, 
-        width: '100%',
-        flex: 1 ,    
-    },
-    title: {
-        fontSize: 20,
-    },
-    subtitle: {
-        fontSize: 10,         
-    },
-    backgroundImage: {
-        flex: 1,
-        resizeMode: "cover",
-        marginTop: '3.8%',
-        position: 'absolute',
-        top: 0,
-        left: 0,   
-        width: '100%',
-        height: 250,
-        top: '-5.5%',
-        borderRadius: 10,
-        }
+    }
 });
