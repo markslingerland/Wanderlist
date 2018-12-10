@@ -8,8 +8,9 @@ export const SET_VISIBILITY_CATEGORY_FILTER = "Wanderlist/points/SET_VISIBILITY_
 export const SET_VISIBILITY_TAG_FILTER = "Wanderlist/points/SET_VISIBILITY_TAG_FILTER";
 export const ADD_TAG_TO_POINT = "Wanderlist/points/ADD_TO_TAGS_POINT";
 export const SET_SEARCH_FILTER = "Wanderlist/points/SET_SEARCH_FILTER";
-export const UPDATE_CATEGORY_FILTER = "Wanderlist/points/UPDATE_CATEGORY_FILTER"
-export const UPDATE_TAG_FILTER = "Wanderlist/points/UPDATE_TAG_FILTER"
+export const UPDATE_CATEGORY_FILTER = "Wanderlist/points/UPDATE_CATEGORY_FILTER";
+export const UPDATE_TAG_FILTER = "Wanderlist/points/UPDATE_TAG_FILTER";
+export const ADD_WANDERPOINT = "Wanderlist/points/ADD_WANDERPOINT";
 
 export default function points(state = {categoryFilter: [], tagFilter:[], points: [], visiblePoints: [], tags:[], filterKeyword: ""}, action) {
   switch (action.type) {
@@ -67,6 +68,8 @@ export default function points(state = {categoryFilter: [], tagFilter:[], points
       }
       tagArray.push(action.filter)
       return {...state, categoryFilter: tagArray}    
+    case ADD_WANDERPOINT:
+      return {...state, points: [...state.points, action.point]}
     default:
       return state;
   }
@@ -108,7 +111,10 @@ export function toggleFilter(filter, type){
   if(type === "tag"){
     return ({type: UPDATE_TAG_FILTER, filter: filter })
   }
-  
+}
+
+export function addWanderpoint(point){
+  return ({type: ADD_WANDERPOINT, point: point})
 }
 
 export function listPoints() {

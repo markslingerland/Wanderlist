@@ -1,7 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { connect } from 'react-redux';
 
-export default class AddWanderpointScreen extends React.Component {
+import { StyleSheet, Text, View } from 'react-native';
+import { listCategories, getCategoryColor } from '../reducers/categoryReducer';
+import { addWanderpoint } from '../reducers/pointReducer';
+
+class AddWanderpointScreen extends React.Component {
+
     render() {
         return (
         <View style={styles.container}>
@@ -10,6 +15,14 @@ export default class AddWanderpointScreen extends React.Component {
         );
     }
 }
+
+const mapDispatchToProps = {
+    addWanderpoint,
+    listCategories,
+    getCategoryColor
+};
+
+export default connect(null, mapDispatchToProps)(AddWanderpointScreen)
 
 const styles = StyleSheet.create({
     container: {
