@@ -16,7 +16,6 @@ class WanderlistContainer extends React.Component {
 
     componentDidMount() {
         this.props.listPoints();
-        console.log("AAAAAAAAAAAAAAAAAAAA");
         this.props.listCategories();
     }
 
