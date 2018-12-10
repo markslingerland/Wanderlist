@@ -1,8 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView, TextInput } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import { connect } from 'react-redux';
+import { listCategories, getCategoryColor } from '../reducers/categoryReducer';
+import { addWanderpoint } from '../reducers/pointReducer';
 
-export default class AddWanderpointScreen extends React.Component {
+class AddWanderpointScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
@@ -17,6 +20,7 @@ export default class AddWanderpointScreen extends React.Component {
             category: 'None'
         };
       }
+
 
     render() {
         return (
@@ -75,6 +79,14 @@ export default class AddWanderpointScreen extends React.Component {
         );
     }
 }
+
+const mapDispatchToProps = {
+    addWanderpoint,
+    listCategories,
+    getCategoryColor
+};
+
+export default connect(null, mapDispatchToProps)(AddWanderpointScreen)
 
 const styles = StyleSheet.create({
     container: {

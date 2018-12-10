@@ -11,17 +11,17 @@ import AddWanderpointScreen from '../screens/addWanderpointScreen';
 
 const icons = {
 	filled: {
-		Explore: require('../../assets/images/TabBar/Explore-filled.png'),
+		//Explore: require('../../assets/images/TabBar/Explore-filled.png'),
 		Map: require('../../assets/images/TabBar/Map-filled.png'),
 		Wanderlist: require('../../assets/images/TabBar/Wanderlist-filled.png'),
 		Itinerary: require('../../assets/images/TabBar/Itinerary-filled.png'),
-		Profile: require('../../assets/images/TabBar/Profile-filled.png'),
+		//Profile: require('../../assets/images/TabBar/Profile-filled.png'),
 	},
-	Explore: require('../../assets/images/TabBar/Explore.png'),
+	//Explore: require('../../assets/images/TabBar/Explore.png'),
 	Map: require('../../assets/images/TabBar/Map.png'),
 	Wanderlist: require('../../assets/images/TabBar/Wanderlist.png'),
 	Itinerary: require('../../assets/images/TabBar/Itinerary.png'),
-	Profile: require('../../assets/images/TabBar/Profile.png'),
+	//Profile: require('../../assets/images/TabBar/Profile.png'),
 }
 
 const ExploreStack = createStackNavigator({
@@ -48,11 +48,11 @@ const ProfileStack = createStackNavigator({
 })
 
 export const RootStack = createBottomTabNavigator({
-    Explore: ExploreStack,
+    //Explore: ExploreStack,
     Map: MapStack,
 	Wanderlist: WanderlistStack,
     Itinerary: ItineraryStack,
-    Profile: ProfileStack,
+    //Profile: ProfileStack,
   }, {
 	initialRouteName: "Wanderlist",
     navigationOptions: ({ navigation }) => ({

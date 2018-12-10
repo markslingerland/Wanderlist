@@ -11,7 +11,7 @@ export default class WanderPointContainer extends React.Component {
         return (
         <View style = {styles.inner}>
             <ScrollView>
-                <AddTagComponent selectedPoint={this.props.selectedPoint}/>
+                {/* <AddTagComponent selectedPoint={this.props.selectedPoint}/> */}
                 <View style={styles.tagContainer} >
                     <TagsComponent selectedPoint = {this.props.selectedPoint} />
                 </View>
