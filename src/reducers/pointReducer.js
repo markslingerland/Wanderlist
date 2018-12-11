@@ -70,6 +70,8 @@ export default function points(state = {categoryFilter: [], tagFilter:[], points
       tagArray.push(action.filter)
       return {...state, categoryFilter: tagArray}    
     case ADD_WANDERPOINT:
+      let newPoint = action.point;
+      newPoint.id = state.points[state.points.length-1].id + 1
       return {...state, points: state.points.concat(action.point)}
     case DELETE_WANDERPOINT:
       state.points.splice(state.points.map(e => e.id).indexOf(action.point.id), 1)

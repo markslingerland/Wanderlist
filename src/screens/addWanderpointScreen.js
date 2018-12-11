@@ -133,25 +133,25 @@ class AddWanderpointScreen extends React.Component {
                                 value: 'Entertainment'
                                 },
                                 {label:'Religious',
-                                value: 'Religious '
+                                value: 'Religious'
                                 },
                                 {label:'View',
-                                value: 'View '
+                                value: 'View'
                                 },
                                 {label:'Hotel',
-                                value: 'Hotel '
+                                value: 'Hotel'
                                 },
                                 {label:'Relax',
-                                value: 'Relax '
+                                value: 'Relax'
                                 },
                                 {label:'Food',
-                                value: 'Food '
+                                value: 'Food'
                                 },
                                 {label:'Drinks',
-                                value: 'Drinks '
+                                value: 'Drinks'
                                 },
                                 {label:'Shopping',
-                                value: 'Shopping '
+                                value: 'Shopping'
                                 }]}
                         placeholder={{}}
                         onValueChange={(value) => {
@@ -207,14 +207,14 @@ class AddWanderpointScreen extends React.Component {
                     coordinate={{latitude: this.state.latitude, longitude: this.state.longitude}}
                 />
             </MapView>
-            <View style={styles.buttonContainerWrapper}>         
+            {/* <View style={styles.buttonContainerWrapper}>         
                 <View style={styles.buttonContainer}>
                     <Button
                         onPress={() => this.generatePoint(this.state)}
                         title='Add WanderPoint'
                     />
                 </View> 
-            </View>   
+            </View>    */}
         </ScrollView>
         );
     }

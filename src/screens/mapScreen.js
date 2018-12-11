@@ -15,7 +15,6 @@ class MapScreen extends React.Component {
     };
 
     componentWillMount() {
-        this.props.listPoints();
         this.props.listCategories();
       }
 
@@ -25,6 +24,7 @@ class MapScreen extends React.Component {
     }
     
     renderMarker(point){
+        console.log(point)
     return <MapView.Marker
         key={point.key}
         pinColor={this.props.categories.filter(category => category.name == point.category)[0].color}
