@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TextInput, TouchableWithoutFeedback, Image, Switch, Button, TouchableOpacity } from 'react-native';
+import { Platform, StyleSheet, Text, View, ScrollView, TextInput, TouchableWithoutFeedback, Image, Switch, Button, TouchableOpacity } from 'react-native';
 import { Permissions, ImagePicker } from 'expo'
 import { FontAwesome } from '@expo/vector-icons';
 import { connect } from 'react-redux';
@@ -237,9 +237,18 @@ const styles = StyleSheet.create({
         borderTopColor: '#dedede',
     },
     switchContainer: {
-        backgroundColor: '#f2f2f2',
+        ...Platform.select({
+            ios: {
+                backgroundColor: '#f2f2f2'
+            },
+            android: {
+                backgroundColor: '#fff',
+                justifyContent: 'center'
+            }
+        }),
+        
         height: 60,    
-        alignItems: 'center',  
+        alignItems: 'center',
         flexDirection: "row"
     },
     headerText: {
@@ -247,15 +256,30 @@ const styles = StyleSheet.create({
         fontWeight: "400",
     },
     inputField: {
+        ...Platform.select({
+            ios: {
+                backgroundColor: '#f2f2f2'
+            },
+            android: {
+                backgroundColor: '#fff',
+            }
+        }),
         width: '100%',
         height: 60,
-        backgroundColor: "#f2f2f2",
         padding: 15,
     },
     pickerField: {
+        ...Platform.select({
+            ios: {
+                backgroundColor: '#f2f2f2'
+            },
+            android: {
+                backgroundColor: '#fff',
+                alignItems: 'center'
+            }
+        }),
         width: '100%',
         height: 60,
-        backgroundColor: "#f2f2f2",
         padding: 12,
         justifyContent: 'center',
     },
@@ -289,9 +313,16 @@ const styles = StyleSheet.create({
         borderColor: '#dedede'
     },
     inputFieldDescription: {
+        ...Platform.select({
+            ios: {
+                backgroundColor: '#f2f2f2'
+            },
+            android: {
+                backgroundColor: '#fff',
+            }
+        }),
         width: '100%',
         height: 150 ,
-        backgroundColor: "#f2f2f2",
         paddingLeft: 15,
         paddingTop: 15,
     },
