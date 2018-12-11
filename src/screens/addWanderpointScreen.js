@@ -77,13 +77,13 @@ class AddWanderpointScreen extends React.Component {
             <View style={styles.container}>
                 <TouchableWithoutFeedback onPress={() => this._pickImage()}>
                     <View style={styles.addImage}>
-                        { this.state.image == '' ? 
-                        <View style={{alignItems: 'center'}}>>
+                        { this.state.image == '' ?
+                        <View style={{alignItems: 'center'}}>
                             <Text style={styles.imageText}> Add Image </Text>
                             <FontAwesome
                             name='plus'
                             size={20} />
-                        </View> : 
+                        </View>: 
                         <View style={{height: "100%", width: "100%", alignItems: "stretch"}}>
                             <Image style={{flex:1, height: "100%", width: "100%", resizeMode: "cover"}} source={{uri: this.state.image}}/>
                         </View>}
