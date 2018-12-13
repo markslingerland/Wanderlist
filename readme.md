@@ -22,7 +22,7 @@
 | Design standards | 10  |
 | Development | 90  |
 | Documentation | 10  |
-| Presentation preperations | 5  |
+| Presentation preparations | 5  |
 
 
 
