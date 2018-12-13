@@ -10,7 +10,7 @@
 
 **Roman**: 
 
-**Wessel**: 
+**Wessel**: Making reducers and backend methods for use with data; Categories and Wanderpoint handling. Making UML diagrams for use in development cycle. Trello keeper. Customized pin colors of map.
 
 ## Time Allotment
 
@@ -42,8 +42,12 @@
 
 | Subject | Hours |
 | --- | --- |
-| Lessons |  |
-
+| Project planning | 20 |
+| Design standards | 10 |
+| Development | 80 |
+| Documentation | 10 |
+| Presentation preparations | 5 |
+| UML Diagrams | 10 |
 | **total** | **135**|
 
 ### Alexandra
