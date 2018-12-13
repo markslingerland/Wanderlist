@@ -4,7 +4,7 @@
 
 ### Main tasks
 
-**Mark**: 
+**Mark**: Making the enhanced map view, filtering, search function and refactoring components to improved standards.
 
 **Alexandra**: 
 
@@ -18,7 +18,13 @@
 
 | Subject | Hours |
 | --- | --- |
-| Lessons |  |
+| Project planning | 20  |
+| Design standards | 10  |
+| Development | 90  |
+| Documentation | 10  |
+| Presentation preperations | 5  |
+
+
 
 | **total** | **135**|
 
@@ -52,16 +58,16 @@
 
 
 
-**Personal Grade: 4**
+**Personal Grade: 5**
 
 ### Alexandra
 
-**Personal Grade: 4**
+**Personal Grade: 5**
 
 ### Roman
 
-**Personal Grade: 4**
+**Personal Grade: 5**
 
 ### Wessel
 
-**Personal Grade: 4**
+**Personal Grade: 5**
