@@ -8,7 +8,7 @@
 
 **Alexandra**: Focus on the UX/UI design and making mock-ups. Making the wanderpoint overview (one single point), filter modal and refactoring components.
 
-**Roman**: 
+**Roman**: Implementing the WanderPoint overview, Add Point functionality, Implementing the designs, working on the flow of the application and its presentation. 
 
 **Wessel**: Making reducers and backend methods for use with data; Categories and Wanderpoint handling. Making UML diagrams for use in development cycle. Trello keeper. Customized pin colors of map.
 
