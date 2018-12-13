@@ -29,13 +29,13 @@
 ### Roman
 
 | Subject | Hours |
+| --- | --- |
 | Project planning| 20 |
 | Design standards | 10 |
 | Implementing design | 30 |
 | Developping functionalities | 60 |
 | Documentation | 10 |
 | Presentation preparations | 5 |
-
 | **total** | **135**|
 
 ### Wessel
